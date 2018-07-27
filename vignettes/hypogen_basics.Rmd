@@ -1,0 +1,81 @@
+---
+title: "The hypogen package"
+author: "Kosmas Hench"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(tidyverse)
+library(rtracklayer)
+devtools::load_all("~/Desktop/hyplo_Rlab/hypogen")
+
+```
+
+
+## About the package:
+
+The **hypogen** package helps with population genetic analysis based on the hamlet reference genome (*Hypoplectrus puella*). It contains one template for genome wide plots (`geom_hypo_LG()`) and one template to set statistics into the context of the genome annotation (`hypo_annotation_baseplot()`).
+
+In addition to this the package contains a few helpers for a consistent plot layout.
+More *artistic* aspects of hamlet analysis plots are provided by the [**hypoimg**](www.github.com/k-hench/hypoimg) package.
+
+## The basic genome wide plot
+
+Ploting a certain statistic over the whole genome is a frequent issue. An example for this is the running average of *F~ST~*.
+
+Assume we have a dataset containing to variables measure along the genome:
+
+```{r create_fake_genome_wide_data}
+test_df <- tibble(x=rep(seq(1,max(hypo_karyotype$GEND),length.out = 500),2)) %>%
+  mutate(CHROM = hypo_which_CHROM(x),grp = rep(c('sin','cos'), each = 500),
+         y = ifelse(grp=='sin',sin(x/200000000*2*pi),cos(x/200000000*2*pi+.2))+rnorm(1000))
+test_df %>% head
+```
+
+```{r plot_genome_wide,fig.width=10,fig.height=6, out.width="100%"}
+ggplot() +
+  geom_hypo_LG() +
+  geom_line(data=test_df,aes(x=x,y=y,col=CHROM)) +
+  scale_fill_hypo_LG_bg() +
+  scale_x_hypo_LG() +
+  scale_color_hypo_LG() +
+  facet_grid(grp~.)+
+  theme_hypo()
+```
+
+## The annotation plot
+
+```{r create_fake_annotation_data}
+XR <- c(0,100000)
+test_df_2 <- tibble(x=rep(seq(XR[1],XR[2],length.out = 200),2)) %>%
+  mutate(window = rep(c('bold(hyp_sin)','bold(hyp_cos)'), each = 200),
+         y = ifelse(window == 'bold(hyp_sin)',
+                    sin(x/XR[2]*20*pi),
+                    cos(x/XR[2]*20*pi+.2)) + rnorm(400))
+```
+
+```{r plot_annotation,fig.width=10,fig.height=8, out.width="100%"}
+hypo_annotation_baseplot(searchLG = "LG03", xrange = XR,
+                         genes_of_interest = 'SUN1_4') +
+  geom_line(data = test_df_2, aes(x = x, y = y, color = window)) +
+  facet_grid(window~.,scales='free_y',
+             switch = 'y',labeller = label_parsed,
+             as.table = TRUE) +
+  scale_color_manual(values = c(hypo_clr_LGs[c(1,24,10,15,20)]),
+                     guide = FALSE) +
+  scale_fill_manual(values = hypo_clr_LGs[c(10,15,20)], guide = FALSE) +
+  scale_x_continuous(name = "Hypo AnnoPlot Title",
+                     expand = c(0,0),position = 'top') +
+  theme_hypo() +
+  theme_hypo_anno_extra()
+```
