@@ -25,9 +25,9 @@
 #' @seealso \code{\link{hypo_annotation_baseplot}}
 hypo_annotation_get <- function(searchLG,xrange,genes_of_interest=c(),
                                     genes_of_sec_interest=c(),anno_rown=3){
-  gfffile <- system.file("extdata", "HP.annotation.named.gff", package="hypogen")
+  gfffile <- system.file("extdata", "HP.annotation.named.gff.gz", package="hypogen")
   gff_filter <- list(seqid=searchLG)
-  data <- as.data.frame(readGFF(gfffile,filter=gff_filter)) %>%
+  data <- as.data.frame(readGFF(gzfile(gfffile),filter=gff_filter)) %>%
     mutate(Parent=as.character(Parent))
 
   mRNAs <- data %>% filter(type=='mRNA',end>xrange[1],start<xrange[2]) %>%
