@@ -26,7 +26,7 @@ visualization.
 
 file_windowed <- system.file("extdata", "example.windowed.weir.fst.gz", package = "hypogen")
 
-hypo_import_snps(file = file_windowed, gz = TRUE)
+hypo_import_windows(file = file_windowed, gz = TRUE)
 
 }
 \seealso{

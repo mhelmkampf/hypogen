@@ -130,6 +130,8 @@ theme_hypo_anno_extra <- function(...){
 #' @param x interger skalar (mandatory), a bp position on the hamlet genome.
 #'
 #' @seealso \code{\link{hypo_which_CHROM}}
+#'
+#' @export
 hypo_which_CHROM_s <- function(x){
   CHROM <- hypo_karyotype$CHROM[x >= hypo_karyotype$GSTART & x <= hypo_karyotype$GEND]
   CHROM
@@ -144,6 +146,8 @@ hypo_which_CHROM_s <- function(x){
 #' @param x interger vector (mandatory), a vector of bp positions on the hamlet genome.
 #'
 #' @seealso \code{\link{hypo_which_CHROM}}
+#'
+#' @export
 hypo_which_CHROM <- function(x){
   CHROM <- purrr::map(x,hypo_which_CHROM_s)
   unlist(CHROM)
