@@ -36,7 +36,7 @@ hypo_annotation_baseplot(searchLG = "LG03", xrange = c(0,100000),
   genes_of_interest = 'SUN1_4') +
   geom_line(data = dataframe,
             aes(x = x, y = y, color = window)) +
-  facet_grid(window~.,scales='free_y',
+  facet_grid(window~., scales = 'free_y',
              switch = 'y',labeller = label_parsed,
              as.table = TRUE)
 

@@ -21,6 +21,7 @@ The should be combined with \code{hypogen::geom_hypo_LG}
 ggplot() +
   geom_hypo_LG() +
   scale_x_hypo_LG()
+
 }
 \seealso{
 \code{\link{geom_hypo_LG}}, \code{\link{scale_color_hypo_LG}}
