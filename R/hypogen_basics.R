@@ -13,8 +13,10 @@
 #' ggplot() +
 #'   geom_hypo_LG()+
 #'   scale_color_hypo_LG()
+#'
+#' @export
 geom_hypo_LG <- function(...){
-  geom_rect(inherit.aes = F,data=hypo_karyotype,
+  ggplot2::geom_rect(inherit.aes = F,data=hypo_karyotype,
             aes(xmin = GSTART,
                 xmax = GEND,
                 ymin = -Inf,
@@ -37,10 +39,12 @@ geom_hypo_LG <- function(...){
 #' ggplot() +
 #'   geom_hypo_LG() +
 #'   scale_x_hypo_LG()
+#'
+#' @export
 scale_x_hypo_LG <- function(..., name = '', expand = c(0,0),
                             breaks = (hypo_karyotype$GSTART + hypo_karyotype$GEND) / 2,
                             labels = 1:24, position = "top"){
-  scale_x_continuous(name = name, expand = expand,breaks = breaks,
+  ggplot2::scale_x_continuous(name = name, expand = expand,breaks = breaks,
                      labels = labels,position = position)
 }
 
@@ -53,8 +57,10 @@ scale_x_hypo_LG <- function(..., name = '', expand = c(0,0),
 #' \strong{! CAREFUL:} should not be used if additional color levels exiest.
 #'
 #' @seealso \code{\link{geom_hypo_LG}}, \code{\link{scale_x_hypo_LG}}
+#'
+#' @export
 scale_color_hypo_LG <- function(..., name = 'LG'){
-  scale_color_manual(...,name = name, values = hypo_clr_LGs)
+  ggplot2::scale_color_manual(...,name = name, values = hypo_clr_LGs)
 }
 
 #' Set LG fill
@@ -68,8 +74,10 @@ scale_color_hypo_LG <- function(..., name = 'LG'){
 #' to the desired fill scale.
 #'
 #' @seealso \code{\link{geom_hypo_LG}}, \code{\link{scale_x_hypo_LG}}, \code{\link{scale_color_hypo_LG}}
+#'
+#' @export
 scale_fill_hypo_LG_bg <- function(){
-  scale_fill_manual(values = c(NA, hypo_clr_lg), guide = F)
+  ggplot2::scale_fill_manual(values = c(NA, hypo_clr_lg), guide = F)
 }
 
 #' Set hypogen plot theme
@@ -79,9 +87,11 @@ scale_fill_hypo_LG_bg <- function(){
 #' This theme is optimized for genome wide plots.
 #'
 #' @seealso \code{\link{theme_hypo_anno_extra}}
+#'
+#' @export
 theme_hypo <- function (...) {
-  theme_bw(base_size = 10, base_family = "xkcd") %+replace%
-    theme(...,
+  ggplot2::theme_bw(base_size = 10, base_family = "Helvetica") %+replace%
+    ggplot2::theme(...,
           plot.background = element_blank(),
           panel.background  = element_blank(),
           panel.grid=element_blank(),
@@ -99,11 +109,13 @@ theme_hypo <- function (...) {
 #' \code{theme_hypo_anno_extra} adjusts the theme for annotation plots.
 #'
 #' @seealso \code{\link{theme_hypo}}
+#' @export
 theme_hypo_anno_extra <- function(...){
-  theme(axis.title.x = element_text(),
+  ggplot2::theme(axis.title.x = element_text(),
         panel.grid.major.x = element_line(color = hypo_clr_lg),
         panel.grid.minor.x = element_line(color = hypo_clr_lg),
         axis.title.y = element_blank(),
+        strip.background = element_blank(),
         strip.placement = 'outside')
 }
 
@@ -133,6 +145,6 @@ hypo_which_CHROM_s <- function(x){
 #'
 #' @seealso \code{\link{hypo_which_CHROM}}
 hypo_which_CHROM <- function(x){
-  CHROM <- map(x,hypo_which_CHROM_s)
+  CHROM <- purrr::map(x,hypo_which_CHROM_s)
   unlist(CHROM)
 }
