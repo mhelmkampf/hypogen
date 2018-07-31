@@ -1,3 +1,6 @@
+.onAttach <- function(libname, pkgname) {
+  packageStartupMessage("--- Welcome to hypogen ---")
+}
 #' Shaded LG backgrounds
 #'
 #' \code{geom_hypo_LG} adds the linkage group (LG) boundaries to background of a ggplot.
