@@ -32,7 +32,7 @@ devtools::load_all("~/Desktop/hypo_Rlab/hypogen/")
 The **hypogen** package helps with population genetic analysis based on the hamlet reference genome (*Hypoplectrus puella*). It contains two functions to import population genetic statistics as produced by e.g. [VCFtools](https://vcftools.github.io/index.html) (`hypo_import_snps()` & `hypo_import_windows()`) in the context of the hamlet genome. Furthermore it provides one template for genome wide plots (`geom_hypo_LG()`) and one template to set statistics into the context of the genome annotation (`hypo_annotation_baseplot()`).
 
 In addition to this the package contains a few helpers for a consistent plot layout.
-More *artistic* aspects of hamlet analysis plots are provided by the [**hypoimg**](www.github.com/k-hench/hypoimg) package.
+More *artistic* aspects of hamlet analysis plots are provided within the [**hypoimg**](www.github.com/k-hench/hypoimg) package.
 
 ## Installation
 
