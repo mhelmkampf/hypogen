@@ -111,7 +111,7 @@ hypo_annotation_baseplot(searchLG = "LG01", xrange = XR,
   theme_hypo_anno_extra()
 ```
 
----------------------------------
+------------------------
 
 <center>
 <img src = "logo.svg" width = 20% />
