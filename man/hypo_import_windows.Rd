@@ -4,12 +4,15 @@
 \alias{hypo_import_windows}
 \title{Import window based statistics}
 \usage{
-hypo_import_windows(file, gz = FALSE, ...)
+hypo_import_windows(file, gz = FALSE, run, ...)
 }
 \arguments{
 \item{file}{string skalar (mandatory), the input file}
 
 \item{gz}{logical skalar (optional), is the input file gz compressed?}
+
+\item{run}{string skalar (optional), appends a column RUN as ID if
+several files should be merged later}
 }
 \description{
 \code{hypo_import_windows} imports window based statistics (such as VCFtools output).

@@ -10,6 +10,8 @@
 #'
 #' @param file string skalar (mandatory), the input file
 #' @param gz logical skalar (optional), is the input file gz compressed?
+#' @param run string skalar (optional), appends a column RUN as ID if
+#'   several files should be merged later
 #'
 #' @seealso \code{\link{hypo_import_windows}}
 #'
@@ -20,7 +22,7 @@
 #' hypo_import_snps(file = file_snps, gz = TRUE)
 #'
 #' @export
-hypo_import_snps <- function(file, gz=FALSE,...){
+hypo_import_snps <- function(file, gz=FALSE, run, ...){
   if(gz){
     import <- function(...,file){
       readr::read_delim(file = gzfile(file), delim='\t', ...)
@@ -34,6 +36,13 @@ hypo_import_snps <- function(file, gz=FALSE,...){
   data <- import(file=file,...) %>%
     dplyr::left_join(hypo_chrom_start,by="CHROM") %>%
     dplyr::mutate(GPOS = GSTART + POS)
+
+  if(!missing("run")){
+    stopifnot(length(run) == 1)
+    stopifnot(is.character(run))
+
+    data <- data %>% mutate(RUN = run)
+  }
   data
 
 }
@@ -51,6 +60,8 @@ hypo_import_snps <- function(file, gz=FALSE,...){
 #'
 #' @param file string skalar (mandatory), the input file
 #' @param gz logical skalar (optional), is the input file gz compressed?
+#' @param run string skalar (optional), appends a column RUN as ID if
+#'   several files should be merged later
 #'
 #' @seealso \code{\link{hypo_import_snps}}
 #'
@@ -61,7 +72,7 @@ hypo_import_snps <- function(file, gz=FALSE,...){
 #' hypo_import_windows(file = file_windowed, gz = TRUE)
 #'
 #' @export
-hypo_import_windows <- function(file, gz=FALSE,...){
+hypo_import_windows <- function(file, gz=FALSE, run,...){
   if(gz){
     import <- function(...,file){
       readr::read_delim(file = gzfile(file), delim='\t', ...)
@@ -76,6 +87,12 @@ hypo_import_windows <- function(file, gz=FALSE,...){
     dplyr::left_join(hypo_chrom_start,by="CHROM") %>%
     dplyr::mutate(POS = (BIN_START + BIN_END)/2,
                   GPOS = GSTART + POS)
-  data
 
+  if(!missing("run")){
+    stopifnot(length(run) == 1)
+    stopifnot(is.character(run))
+
+    data <- data %>% mutate(RUN = run)
+  }
+  data
 }
