@@ -27,7 +27,7 @@
 #' @export
 hypo_annotation_get <- function(searchLG, xrange, genes_of_interest=c(),
                                     genes_of_sec_interest=c(), anno_rown = 3){
-  gfffile <- system.file("extdata", "HP.annotation.named.gff.gz", package="hypogen")
+  gfffile <- system.file("extdata", stringr::str_c("HP.annotation.named.",searchLG,".gff.gz"), package="hypogen")
   gff_filter <- list(seqid = searchLG)
   data <- as.data.frame(rtracklayer::readGFF(gzfile(gfffile), filter = gff_filter)) %>%
     dplyr::mutate(Parent = as.character(Parent))
