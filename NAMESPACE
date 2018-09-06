@@ -3,6 +3,8 @@
 export(geom_hypo_LG)
 export(hypo_annotation_baseplot)
 export(hypo_annotation_get)
+export(hypo_hwe)
+export(hypo_import_genotype_freq)
 export(hypo_import_snps)
 export(hypo_import_windows)
 export(hypo_which_CHROM)

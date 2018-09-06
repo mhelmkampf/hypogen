@@ -1,0 +1,101 @@
+---
+title: "Genotpe frequencies"
+author: "Kosmas Hench"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{hypogen intro}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options:
+  chunk_output_type: console
+---
+
+```{css, echo=FALSE}
+img {
+  border: 0;
+}
+```
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+devtools::load_all("~/Desktop/hypo_Rlab/hypogen/")
+
+```
+
+## Preparation:
+
+To be able to plot genotytpe frequencies, we need a genotype table where genotypes
+are encoded as 0,1, & 2 (homozygous reference allele, heterozygous and homozygous alternative allele).
+
+This can be easily generated from a **vcf file** using **VCFtools**:
+
+```sh
+vcftools \
+  --gvcf input.vcf.gz \
+  --out  genotype_table \
+  --012
+```
+
+Unfortunately the **vcftools** output has the wrong orientation (samples as rows, sites as columns).
+So before we reed the genotypes into **R** they are transformed using **awk**:
+
+```sh
+awk '
+{ 
+    for (i=1; i<=NF; i++)  {
+        a[NR,i] = $i
+    }
+}
+NF>p { p = NF }
+END {    
+    for(j=1; j<=p; j++) {
+        str=a[1,j]
+        for(i=2; i<=NR; i++){
+            str=str" "a[i,j];
+        }
+        print str
+    }
+}' genotype_table.012 | gzip > genotype_table.012.trans.txt.gz
+
+```
+## R setup
+
+To efficiently plot the genotypes frequencies we make use of the **ggtern** package as well as of the **tidyverse** (and of the **hypogen** package):
+
+```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(ggtern)
+library(hypogen)
+```
+
+## Loading the data into R
+
+The package **hypogen** provides the function `hypo_import_genotype_freq()` which can read 
+the transformed genotypee table and directly computes genotype frequencies:
+
+```{r data_import}
+file_genotypes <- system.file("extdata", "genotype_table.012.trans.txt.gz", package = "hypogen")
+genotype_freqs <- hypo_import_genotype_freq(file_genotypes)
+```
+
+This table can be directly plottet using **gggtern**.
+As a reference we also make use of the **hypogen** function `hypo_hwe()` to indicate Hardy-Weinberg
+genotype frequencies:
+
+```{r plot,fig.width=10,fig.height=6, out.width="100%"}
+ggplot() +
+  coord_tern()+
+  geom_point(data=genotype_freqs,aes(x = AA, y = Aa, z = aa ), col=hypo_clr_LGs[18]) +
+  geom_path(data = hypo_hwe(n = 100),aes(x = AA, y = Aa, z = aa ),color ='black',alpha = .6)
+```
+
+------------------------
+
+<center>
+<img src = "logo.svg" width = 20% />
+</center>

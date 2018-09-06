@@ -5,8 +5,8 @@
 \title{Format genome wide x axis}
 \usage{
 scale_x_hypo_LG(..., name = "", expand = c(0, 0),
-  breaks = (hypo_karyotype$GSTART + hypo_karyotype$GEND)/2, labels = 1:24,
-  position = "top")
+  breaks = (hypo_karyotype$GSTART + hypo_karyotype$GEND)/2,
+  labels = 1:24, position = "top")
 }
 \description{
 \code{scale_x_hypo_LG} adjusts the x axis to match the hamet genome.
