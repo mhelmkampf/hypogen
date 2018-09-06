@@ -70,7 +70,6 @@ To efficiently plot the genotypes frequencies we make use of the **ggtern** pack
 ```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(ggtern)
-library(hypogen)
 ```
 
 ## Loading the data into R
