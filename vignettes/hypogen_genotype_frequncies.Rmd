@@ -67,7 +67,7 @@ END {
 
 To efficiently plot the genotypes frequencies we make use of the **ggtern** package as well as of the **tidyverse** (and of the **hypogen** package):
 
-```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
+```{r load_libs, echo = FALSE, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(ggtern)
 ```
