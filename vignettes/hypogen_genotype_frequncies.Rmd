@@ -1,5 +1,5 @@
 ---
-title: "Genotpe frequencies"
+title: "Genotype frequencies"
 author: "Kosmas Hench"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -86,11 +86,15 @@ This table can be directly plottet using **gggtern**.
 As a reference we also make use of the **hypogen** function `hypo_hwe()` to indicate Hardy-Weinberg
 genotype frequencies:
 
-```{r plot,fig.width=10,fig.height=6, out.width="100%"}
+```{r plot,fig.width=10,fig.height=6, out.width="100%", echo = FALSE, message = FALSE, warning = FALSE}
 ggplot() +
   coord_tern()+
-  geom_point(data=genotype_freqs,aes(x = AA, y = Aa, z = aa ), col=hypo_clr_LGs[18]) +
-  geom_path(data = hypo_hwe(n = 100),aes(x = AA, y = Aa, z = aa ),color ='black',alpha = .6)
+  geom_point(data = genotype_freqs,
+             aes(x = AA, y = Aa, z = aa ),
+             col = hypo_clr_LGs[18]) +
+  geom_path(data = hypo_hwe(n = 100),
+            aes(x = AA, y = Aa, z = aa ),
+            color ='black',alpha = .6)
 ```
 
 ------------------------
