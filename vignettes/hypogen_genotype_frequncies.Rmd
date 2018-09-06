@@ -4,7 +4,7 @@ author: "Kosmas Hench"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{hypogen intro}
+  %\VignetteIndexEntry{genotype frequencies}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options:
