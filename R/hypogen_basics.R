@@ -48,7 +48,7 @@ scale_x_hypo_LG <- function(..., name = '', expand = c(0,0),
                             breaks = (hypo_karyotype$GSTART + hypo_karyotype$GEND) / 2,
                             labels = 1:24, position = "top"){
   ggplot2::scale_x_continuous(name = name, expand = expand,breaks = breaks,
-                     labels = labels,position = position)
+                     labels = labels, position = position, ...)
 }
 
 #' Set LG color palette
