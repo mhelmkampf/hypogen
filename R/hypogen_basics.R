@@ -79,8 +79,8 @@ scale_color_hypo_LG <- function(..., name = 'LG'){
 #' @seealso \code{\link{geom_hypo_LG}}, \code{\link{scale_x_hypo_LG}}, \code{\link{scale_color_hypo_LG}}
 #'
 #' @export
-scale_fill_hypo_LG_bg <- function(){
-  ggplot2::scale_fill_manual(values = c(NA, hypo_clr_lg), guide = F)
+scale_fill_hypo_LG_bg <- function(...,values = c()){
+  ggplot2::scale_fill_manual(...,values = c(values,NA, hypo_clr_lg), guide = F)
 }
 
 #' Set hypogen plot theme
