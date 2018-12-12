@@ -24,7 +24,8 @@ geom_hypo_LG <- function(...){
                 xmax = GEND,
                 ymin = -Inf,
                 ymax = Inf,
-                hypobg = GROUP))
+                hypobg = GROUP))+
+    scale_hypobg_manual()
 }
 
 #' Format genome wide x axis
