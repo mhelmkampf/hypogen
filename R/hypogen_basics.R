@@ -19,12 +19,12 @@
 #'
 #' @export
 geom_hypo_LG <- function(...){
-  ggplot2::geom_rect(inherit.aes = F,data=hypo_karyotype,
+  geom_hypobg(inherit.aes = F,data=hypo_karyotype,
             aes(xmin = GSTART,
                 xmax = GEND,
                 ymin = -Inf,
                 ymax = Inf,
-                fill = GROUP))
+                hypobg = GROUP))
 }
 
 #' Format genome wide x axis
@@ -79,8 +79,8 @@ scale_color_hypo_LG <- function(..., name = 'LG'){
 #' @seealso \code{\link{geom_hypo_LG}}, \code{\link{scale_x_hypo_LG}}, \code{\link{scale_color_hypo_LG}}
 #'
 #' @export
-scale_fill_hypo_LG_bg <- function(...,values = c()){
-  ggplot2::scale_fill_manual(...,values = c(values,NA, hypo_clr_lg), guide = F)
+scale_fill_hypo_LG_bg <- function(...,values = c(odd = NA, even = hypo_clr_lg)){
+  scale_hypobg_manual(...,values = values, guide = F)
 }
 
 #' Set hypogen plot theme
