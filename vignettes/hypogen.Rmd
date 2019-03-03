@@ -1,7 +1,5 @@
 ---
 title: "The hypogen package"
-author: "Kosmas Hench"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{hypogen intro}
@@ -24,7 +22,6 @@ knitr::opts_chunk$set(
 )
 
 library("hypogen")
-
 ```
 
 ## About the package:

@@ -1,7 +1,5 @@
 ---
 title: "Genotype frequencies"
-author: "Kosmas Hench"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{genotype frequencies}
