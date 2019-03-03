@@ -1,5 +1,5 @@
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("--- Welcome to hypogen ---")
+  packageStartupMessage("--- Welcome to crayon::blue(hypogen) ---")
 }
 #' Shaded LG backgrounds
 #'

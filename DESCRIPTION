@@ -2,11 +2,12 @@ Package: hypogen
 Type: Package
 Title: Provides Hypoplectrus PopGen Data and Functions
 Version: 0.0.0.9001
-Authors@R: person("Kosmas", "Hench", email="khench@posteo.net", role = c("aut", "cre"))
+Authors@R: person("Kosmas", "Hench", email="khench@posteo.net", role = c("aut", "cre"),
+      comment = c(ORCID = "0000-0003-1119-187X"))
 Description: Basic reference data for population genomic studies in Caribbean
-  hamlets (Hypoplectrus sp.). It includes summary data of the Hamlet reference 
+  hamlets (Hypoplectrus sp.). It includes summary data of the Hamlet reference
   genome (acession number: PRJEB27858, Hench et al. 2018) as well its annotation.
-  Furthermore it includes some functions to use the reference data  to put new data 
+  Furthermore it includes some functions to use the reference data  to put new data
   into context.
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
