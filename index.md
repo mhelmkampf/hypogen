@@ -6,7 +6,7 @@ The genome was published in our **Inter-chromosomal coupling between vision and 
 
 The original genome can be downloaded from the [European Nucleotide Archive](https://www.ebi.ac.uk/ena/data/view/GCA_900610375.1) (project accession number PRJEB27858).
 
-The annotation is also deposited at [dryad](https://doi.org/10.5061/dryad.pg8q56g). 
+The annotation is also deposited at [dryad](https://doi.org/10.5061/dryad.pg8q56g).
 
 ## Install
 
