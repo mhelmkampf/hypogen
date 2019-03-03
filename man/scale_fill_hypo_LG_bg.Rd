@@ -4,7 +4,7 @@
 \alias{scale_fill_hypo_LG_bg}
 \title{Set LG fill}
 \usage{
-scale_fill_hypo_LG_bg()
+scale_fill_hypo_LG_bg(..., values = c(odd = NA, even = hypo_clr_lg))
 }
 \description{
 \code{scale_fill_hypo_LG_bg} sets the color scheme for the LG background shading.

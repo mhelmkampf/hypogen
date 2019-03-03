@@ -4,7 +4,7 @@
 \alias{hypo_hwe}
 \title{Compute Hardy-Weinberg genopye frequencies}
 \usage{
-hypo_hwe(n = 100)
+hypo_hwe(n = 100L)
 }
 \arguments{
 \item{n}{integer skalar (>= 2, mandatory), length of the

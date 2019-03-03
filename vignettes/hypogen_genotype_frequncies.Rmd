@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-devtools::load_all("~/Desktop/hypo_Rlab/hypogen/")
+library("hypogen")
 
 ```
 
@@ -46,13 +46,13 @@ So before we reed the genotypes into **R** they are transformed using **awk**:
 
 ```sh
 awk '
-{ 
+{
     for (i=1; i<=NF; i++)  {
         a[NR,i] = $i
     }
 }
 NF>p { p = NF }
-END {    
+END {
     for(j=1; j<=p; j++) {
         str=a[1,j]
         for(i=2; i<=NR; i++){
@@ -74,7 +74,7 @@ library(ggtern)
 
 ## Loading the data into R
 
-The package **hypogen** provides the function `hypo_import_genotype_freq()` which can read 
+The package **hypogen** provides the function `hypo_import_genotype_freq()` which can read
 the transformed genotypee table and directly computes genotype frequencies:
 
 ```{r data_import, message = FALSE, warning = FALSE}

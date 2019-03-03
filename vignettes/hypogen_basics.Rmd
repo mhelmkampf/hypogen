@@ -7,7 +7,7 @@ vignette: >
   %\VignetteIndexEntry{hypogen intro}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-devtools::load_all("~/Desktop/hypo_Rlab/hypogen/")
+library("hypogen")
 
 ```
 
@@ -46,12 +46,12 @@ devtools::install_github("k-hench/hypogen")
 ```{r import_data, warning = FALSE, message = FALSE}
 # SNP data
 file_snps <- system.file("extdata", "example.weir.fst.gz", package = "hypogen")
-data_snps <- hypo_import_snps(file = file_snps, gz = TRUE) %>% 
+data_snps <- hypo_import_snps(file = file_snps, gz = TRUE) %>%
   mutate(window = 'bolditalic(F[ST])')
 
 # Window data
 file_windows <- system.file("extdata", "example.windowed.weir.fst.gz", package = "hypogen")
-data_windows <- hypo_import_windows(file = file_windows, gz = TRUE) %>% 
+data_windows <- hypo_import_windows(file = file_windows, gz = TRUE) %>%
   mutate(window = 'bolditalic(F[ST])')
 ```
 
