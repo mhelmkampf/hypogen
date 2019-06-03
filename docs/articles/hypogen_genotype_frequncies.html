@@ -104,51 +104,51 @@ img {
 <a href="#preparation" class="anchor"></a>Preparation:</h2>
 <p>To be able to plot genotytpe frequencies, we need a genotype table where genotypes are encoded as 0,1, &amp; 2 (homozygous reference allele, heterozygous and homozygous alternative allele).</p>
 <p>This can be easily generated from a <strong>vcf file</strong> using <strong>VCFtools</strong>:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">vcftools</span> \
-  --gvcf input.vcf.gz \
-  --out  genotype_table \
-  --012</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="ex">vcftools</span> \</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  --gvcf input.vcf.gz \</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  --out  genotype_table \</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  --012</a></code></pre></div>
 <p>Unfortunately the <strong>vcftools</strong> output has the wrong orientation (samples as rows, sites as columns). So before we reed the genotypes into <strong>R</strong> they are transformed using <strong>awk</strong>:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="fu">awk</span> <span class="st">'</span>
-<span class="st">{</span>
-<span class="st">    for (i=1; i&lt;=NF; i++)  {</span>
-<span class="st">        a[NR,i] = $i</span>
-<span class="st">    }</span>
-<span class="st">}</span>
-<span class="st">NF&gt;p { p = NF }</span>
-<span class="st">END {</span>
-<span class="st">    for(j=1; j&lt;=p; j++) {</span>
-<span class="st">        str=a[1,j]</span>
-<span class="st">        for(i=2; i&lt;=NR; i++){</span>
-<span class="st">            str=str" "a[i,j];</span>
-<span class="st">        }</span>
-<span class="st">        print str</span>
-<span class="st">    }</span>
-<span class="st">}'</span> genotype_table.012 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Logic">|</a></span> <span class="fu">gzip</span> <span class="op">&gt;</span> genotype_table.012.trans.txt.gz</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="fu">awk</span> <span class="st">'</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">{</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">    for (i=1; i&lt;=NF; i++)  {</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">        a[NR,i] = $i</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">    }</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="st">}</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="st">NF&gt;p { p = NF }</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="st">END {</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="st">    for(j=1; j&lt;=p; j++) {</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="st">        str=a[1,j]</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="st">        for(i=2; i&lt;=NR; i++){</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="st">            str=str" "a[i,j];</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="st">        }</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="st">        print str</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="st">    }</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="st">}'</span> genotype_table.012 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Logic">|</a></span> <span class="fu">gzip</span> <span class="op">&gt;</span> genotype_table.012.trans.txt.gz</a></code></pre></div>
 </div>
 <div id="r-setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#r-setup" class="anchor"></a>R setup</h2>
 <p>To efficiently plot the genotypes frequencies we make use of the <strong>ggtern</strong> package as well as of the <strong>tidyverse</strong> (and of the <strong>hypogen</strong> package):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyverse)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggtern)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyverse)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggtern)</a></code></pre></div>
 </div>
 <div id="loading-the-data-into-r" class="section level2">
 <h2 class="hasAnchor">
 <a href="#loading-the-data-into-r" class="anchor"></a>Loading the data into R</h2>
 <p>The package <strong>hypogen</strong> provides the function <code><a href="../reference/hypo_import_genotype_freq.html">hypo_import_genotype_freq()</a></code> which can read the transformed genotypee table and directly computes genotype frequencies:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file_genotypes &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"genotype_table.012.trans.txt.gz"</span>, <span class="dt">package =</span> <span class="st">"hypogen"</span>)
-
-genotype_freqs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/hypo_import_genotype_freq.html">hypo_import_genotype_freq</a></span>(file_genotypes)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">file_genotypes &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"genotype_table.012.trans.txt.gz"</span>, <span class="dt">package =</span> <span class="st">"hypogen"</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">genotype_freqs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/hypo_import_genotype_freq.html">hypo_import_genotype_freq</a></span>(file_genotypes)</a></code></pre></div>
 <p>This table can be directly plottet using <strong>gggtern</strong>. As a reference we also make use of the <strong>hypogen</strong> function <code><a href="../reference/hypo_hwe.html">hypo_hwe()</a></code> to indicate Hardy-Weinberg genotype frequencies:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/ggtern/topics/ggplot">ggplot</a></span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggtern/topics/coord_tern">coord_tern</a></span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> genotype_freqs,
-             <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtern/topics/aes">aes</a></span>(<span class="dt">x =</span> AA, <span class="dt">y =</span> Aa, <span class="dt">z =</span> aa ),
-             <span class="dt">col =</span> hypo_clr_LGs[<span class="dv">18</span>]) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> <span class="kw"><a href="../reference/hypo_hwe.html">hypo_hwe</a></span>(<span class="dt">n =</span> <span class="dv">100</span>),
-            <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtern/topics/aes">aes</a></span>(<span class="dt">x =</span> AA, <span class="dt">y =</span> Aa, <span class="dt">z =</span> aa ),
-            <span class="dt">color =</span><span class="st">'black'</span>,<span class="dt">alpha =</span> .<span class="dv">6</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/ggtern/topics/ggplot">ggplot</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggtern/topics/coord_tern">coord_tern</a></span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> genotype_freqs,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">             <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtern/topics/aes">aes</a></span>(<span class="dt">x =</span> AA, <span class="dt">y =</span> Aa, <span class="dt">z =</span> aa ),</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">             <span class="dt">col =</span> hypo_clr_LGs[<span class="dv">18</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> <span class="kw"><a href="../reference/hypo_hwe.html">hypo_hwe</a></span>(<span class="dt">n =</span> <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">            <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtern/topics/aes">aes</a></span>(<span class="dt">x =</span> AA, <span class="dt">y =</span> Aa, <span class="dt">z =</span> aa ),</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">            <span class="dt">color =</span><span class="st">'black'</span>,<span class="dt">alpha =</span> <span class="fl">.6</span>)</a></code></pre></div>
 <p><img src="hypogen_genotype_frequncies_files/figure-html/plot-1.png" width="100%"></p>
 <hr>
 <center>
