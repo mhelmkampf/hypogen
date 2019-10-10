@@ -9,9 +9,9 @@
 #' adds a alternating shaded background to the plot.
 #'
 #'
-#' @examples
-#'
 #' @seealso \code{\link{scale_fill_hypo_LG_bg}}
+#'
+#' @examples
 #'
 #' ggplot() +
 #'   geom_hypo_LG()+

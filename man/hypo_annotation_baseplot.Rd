@@ -30,17 +30,6 @@ when plotting. (needs to exactly match the gene name of the original gff file)}
 This is wrapper that includes loding the annotations, and initalizing the ggplot.
 Individual data tracks should be realized using facetting over the "window" column.
 }
-\examples{
-
-hypo_annotation_baseplot(searchLG = "LG03", xrange = c(0,100000),
-  genes_of_interest = 'SUN1_4') +
-  geom_line(data = dataframe,
-            aes(x = x, y = y, color = window)) +
-  facet_grid(window~., scales = 'free_y',
-             switch = 'y',labeller = label_parsed,
-             as.table = TRUE)
-
-}
 \seealso{
 \code{\link{hypo_annotation_get}}, \code{\link{theme_hypo_anno_extra}}
 }

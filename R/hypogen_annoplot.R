@@ -85,16 +85,6 @@ hypo_annotation_get <- function(searchLG, xrange, genes_of_interest=c(),
 #'
 #' @seealso \code{\link{hypo_annotation_get}}, \code{\link{theme_hypo_anno_extra}}
 #'
-#' @examples
-#'
-#' hypo_annotation_baseplot(searchLG = "LG03", xrange = c(0,100000),
-#'   genes_of_interest = 'SUN1_4') +
-#'   geom_line(data = dataframe,
-#'             aes(x = x, y = y, color = window)) +
-#'   facet_grid(window~., scales = 'free_y',
-#'              switch = 'y',labeller = label_parsed,
-#'              as.table = TRUE)
-#'
 #' @export
 hypo_annotation_baseplot <- function(..., searchLG, xrange, genes_of_interest = c(),
                                  genes_of_sec_interest = c(), anno_rown = 3,

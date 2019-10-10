@@ -6,9 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The hypogen package • hypogen</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="The hypogen package">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
@@ -39,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -68,7 +75,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/k-hench/hypogen">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -81,6 +88,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -109,18 +117,18 @@ img {
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Using the <strong>devtools</strong> package, <strong>hypogen</strong> can be installed directly from github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"k-hench/hypogen"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"k-hench/hypogen"</span>)</a></code></pre></div>
 </div>
 <div id="importing-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#importing-data" class="anchor"></a>Importing Data</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># SNP data</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">file_snps &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"example.weir.fst.gz"</span>, <span class="dt">package =</span> <span class="st">"hypogen"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">file_snps &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"example.weir.fst.gz"</span>, <span class="dt">package =</span> <span class="st">"hypogen"</span>)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">data_snps &lt;-<span class="st"> </span><span class="kw"><a href="../reference/hypo_import_snps.html">hypo_import_snps</a></span>(<span class="dt">file =</span> file_snps, <span class="dt">gz =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">window =</span> <span class="st">'bolditalic(F[ST])'</span>)</a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co"># Window data</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">file_windows &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"example.windowed.weir.fst.gz"</span>, <span class="dt">package =</span> <span class="st">"hypogen"</span>)</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">file_windows &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"example.windowed.weir.fst.gz"</span>, <span class="dt">package =</span> <span class="st">"hypogen"</span>)</a>
 <a class="sourceLine" id="cb2-8" data-line-number="8">data_windows &lt;-<span class="st"> </span><span class="kw"><a href="../reference/hypo_import_windows.html">hypo_import_windows</a></span>(<span class="dt">file =</span> file_windows, <span class="dt">gz =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">window =</span> <span class="st">'bolditalic(F[ST])'</span>)</a></code></pre></div>
 </div>
@@ -129,19 +137,19 @@ img {
 <a href="#the-basic-genome-wide-plot" class="anchor"></a>The basic genome wide plot</h2>
 <p>Ploting a certain statistic over the whole genome is a frequent issue. An example for this is the running average of <em>F<sub>ST</sub></em>.</p>
 <p>Assume we have a dataset containing to variables measure along the genome:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">test_df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">max</a></span>(hypo_karyotype<span class="op">$</span>GEND),<span class="dt">length.out =</span> <span class="dv">500</span>),<span class="dv">2</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">CHROM =</span> <span class="kw"><a href="../reference/hypo_which_CHROM.html">hypo_which_CHROM</a></span>(x),<span class="dt">grp =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'sin'</span>,<span class="st">'cos'</span>), <span class="dt">each =</span> <span class="dv">500</span>),</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">         <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(grp<span class="op">==</span><span class="st">'sin'</span>,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Trig">sin</a></span>(x<span class="op">/</span><span class="dv">200000000</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span>pi),<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Trig">cos</a></span>(x<span class="op">/</span><span class="dv">200000000</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span>pi<span class="fl">+.2</span>))<span class="op">+</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">1000</span>))</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">test_df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x=</span><span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">1</span>,<span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(hypo_karyotype<span class="op">$</span>GEND),<span class="dt">length.out =</span> <span class="dv">500</span>),<span class="dv">2</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">CHROM =</span> <span class="kw"><a href="../reference/hypo_which_CHROM.html">hypo_which_CHROM</a></span>(x),<span class="dt">grp =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'sin'</span>,<span class="st">'cos'</span>), <span class="dt">each =</span> <span class="dv">500</span>),</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">         <span class="dt">y =</span> <span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(grp<span class="op">==</span><span class="st">'sin'</span>,<span class="kw"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span>(x<span class="op">/</span><span class="dv">200000000</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span>pi),<span class="kw"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span>(x<span class="op">/</span><span class="dv">200000000</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span>pi<span class="fl">+.2</span>))<span class="op">+</span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">1000</span>))</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">test_df <span class="op">%&gt;%</span><span class="st"> </span>head</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; # A tibble: 6 x 4</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;          x CHROM grp         y</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1       1  LG01  sin   -1.52  </span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 1121543. LG01  sin    2.05  </span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 2243086. LG01  sin   -1.55  </span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 4 3364628. LG01  sin    1.83  </span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; 5 4486171. LG01  sin    0.0181</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; 6 5607713. LG01  sin    0.177</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;          x CHROM grp        y</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 1       1  LG01  sin   -0.496</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 2 1121543. LG01  sin    1.55 </span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 3 2243086. LG01  sin    0.319</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 4 3364628. LG01  sin    0.530</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; 5 4486171. LG01  sin   -1.10 </span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; 6 5607713. LG01  sin    1.49</span></a></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/geom_hypo_LG.html">geom_hypo_LG</a></span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data=</span>test_df,<span class="kw">aes</span>(<span class="dt">x=</span>x,<span class="dt">y=</span>y,<span class="dt">col=</span>CHROM)) <span class="op">+</span></a>
@@ -155,28 +163,28 @@ img {
 <div id="the-annotation-plot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-annotation-plot" class="anchor"></a>The annotation plot</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">XR &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">10000</span>,<span class="dv">50000</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">test_df_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(XR[<span class="dv">1</span>],XR[<span class="dv">2</span>],<span class="dt">length.out =</span> <span class="dv">200</span>),<span class="dv">2</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">window =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'bold(hyp_sin)'</span>,<span class="st">'bold(hyp_cos)'</span>), <span class="dt">each =</span> <span class="dv">200</span>),</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">         <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(window <span class="op">==</span><span class="st"> 'bold(hyp_sin)'</span>,</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">                    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Trig">sin</a></span>(x<span class="op">/</span>XR[<span class="dv">2</span>]<span class="op">*</span><span class="dv">20</span><span class="op">*</span>pi),</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">                    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Trig">cos</a></span>(x<span class="op">/</span>XR[<span class="dv">2</span>]<span class="op">*</span><span class="dv">20</span><span class="op">*</span>pi<span class="fl">+.2</span>)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">400</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">XR &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">10000</span>,<span class="dv">50000</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">test_df_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x=</span><span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(XR[<span class="dv">1</span>],XR[<span class="dv">2</span>],<span class="dt">length.out =</span> <span class="dv">200</span>),<span class="dv">2</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">window =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'bold(hyp_sin)'</span>,<span class="st">'bold(hyp_cos)'</span>), <span class="dt">each =</span> <span class="dv">200</span>),</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">         <span class="dt">y =</span> <span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(window <span class="op">==</span><span class="st"> 'bold(hyp_sin)'</span>,</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">                    <span class="kw"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span>(x<span class="op">/</span>XR[<span class="dv">2</span>]<span class="op">*</span><span class="dv">20</span><span class="op">*</span>pi),</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">                    <span class="kw"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span>(x<span class="op">/</span>XR[<span class="dv">2</span>]<span class="op">*</span><span class="dv">20</span><span class="op">*</span>pi<span class="fl">+.2</span>)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">400</span>))</a></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/hypo_annotation_baseplot.html">hypo_annotation_baseplot</a></span>(<span class="dt">searchLG =</span> <span class="st">"LG01"</span>, <span class="dt">xrange =</span> XR,</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">                         <span class="dt">genes_of_interest =</span> <span class="st">"TSEN34"</span>,</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3">                         <span class="dt">genes_of_sec_interest =</span> <span class="st">"Serp1"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> data_snps, <span class="kw">aes</span>(<span class="dt">x =</span> POS, <span class="dt">y =</span> WEIR_AND_COCKERHAM_FST),</a>
 <a class="sourceLine" id="cb6-5" data-line-number="5">            <span class="dt">color =</span> <span class="st">'lightgray'</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> data_windows, <span class="kw">aes</span>(<span class="dt">x =</span> POS, <span class="dt">y =</span> WEIGHTED_FST),</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">            <span class="dt">color =</span> viridis<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/viridis/topics/reexports">inferno</a></span>(<span class="dv">5</span>)[<span class="dv">4</span>]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">            <span class="dt">color =</span> viridis<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/viridis/man/reexports.html">inferno</a></span>(<span class="dv">5</span>)[<span class="dv">4</span>]) <span class="op">+</span></a>
 <a class="sourceLine" id="cb6-8" data-line-number="8"><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> XR) <span class="op">+</span></a>
 <a class="sourceLine" id="cb6-9" data-line-number="9"><span class="st">  </span><span class="kw">facet_grid</span>(window<span class="op">~</span>.,<span class="dt">scales=</span><span class="st">'free_y'</span>,</a>
 <a class="sourceLine" id="cb6-10" data-line-number="10">             <span class="dt">switch =</span> <span class="st">'y'</span>,<span class="dt">labeller =</span> label_parsed) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'black'</span>,<span class="st">'gray'</span>,viridis<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/viridis/topics/reexports">inferno</a></span>(<span class="dv">3</span>)),</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'black'</span>,<span class="st">'gray'</span>,viridis<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/viridis/man/reexports.html">inferno</a></span>(<span class="dv">3</span>)),</a>
 <a class="sourceLine" id="cb6-12" data-line-number="12">                     <span class="dt">guide =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> viridis<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/viridis/topics/reexports">inferno</a></span>(<span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> viridis<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/viridis/man/reexports.html">inferno</a></span>(<span class="dv">3</span>),</a>
 <a class="sourceLine" id="cb6-14" data-line-number="14">                    <span class="dt">guide =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb6-15" data-line-number="15"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">name =</span> <span class="st">"Hypo AnnoPlot Title"</span>,</a>
-<a class="sourceLine" id="cb6-16" data-line-number="16">                     <span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="dt">position =</span> <span class="st">'top'</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16">                     <span class="dt">expand =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="dt">position =</span> <span class="st">'top'</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb6-17" data-line-number="17"><span class="st">  </span><span class="kw"><a href="../reference/theme_hypo.html">theme_hypo</a></span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb6-18" data-line-number="18"><span class="st">  </span><span class="kw"><a href="../reference/theme_hypo_anno_extra.html">theme_hypo_anno_extra</a></span>()</a>
 <a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co">#&gt; Warning in .get_version_from_pragmas(pragmas): unrecognized GFF version</span></a>
@@ -184,12 +192,13 @@ img {
 <p><img src="hypogen_files/figure-html/plot_annotation-1.png" width="100%"></p>
 <hr>
 <center>
-<img src="logo.svg" width="20%">
+<img src="hypogen_files/figure-html/unnamed-chunk-2-1.png" width="150pt" height="150pt">
 </center>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -206,17 +215,20 @@ img {
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Kosmas Hench.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

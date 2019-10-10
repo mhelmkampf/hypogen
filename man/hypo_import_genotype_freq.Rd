@@ -32,8 +32,3 @@ using the ggtern package.
 
 This approac assumes biallelic SNPs!
 }
-\examples{
-
-genotype_freqs <- hypo_import_genotype_freq('genotype_table.012.trans.txt'),
-
-}

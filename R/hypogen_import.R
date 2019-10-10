@@ -119,9 +119,6 @@ hypo_import_windows <- function(file, gz=FALSE, run,...){
 #' @param AA string skalar ('ref' or 'major', optional), should the
 #'  reference or the major allele be encoded as A?
 #' @param delim string skalar (optional), delimiter of the input file
-#' @examples
-#'
-#' genotype_freqs <- hypo_import_genotype_freq('genotype_table.012.trans.txt'),
 #'
 #' @export
 hypo_import_genotype_freq <- function(file_path, AA = 'ref', delim = ' '){

@@ -111,5 +111,8 @@ hypo_annotation_baseplot(searchLG = "LG01", xrange = XR,
 ------------------------
 
 <center>
-<img src = "logo.svg" width = 20% />
+```{r, echo = FALSE,fig.asp = 1, out.height = "150pt", out.width = "150pt"}
+library(ggforce)
+hypoimg:::hypo_logo()
+```
 </center>
