@@ -25,15 +25,15 @@
 hypo_import_snps <- function(file, gz=FALSE, run, ...){
   if(gz){
     import <- function(...,file){
-      readr::read_delim(file = gzfile(file), delim='\t', ...)
+      vroom::vroom(file = gzfile(file), delim='\t', ...)
       }
     } else {
       import <- function(...,file){
-        readr::read_delim(file = file, delim='\t', ...)
+        vroom::vroom(file = file, delim='\t', ...)
       }
     }
 
-  data <- import(file=file,...) %>%
+  data <- import(file = file,...) %>%
     dplyr::left_join(hypo_chrom_start,by="CHROM") %>%
     dplyr::mutate(GPOS = GSTART + POS)
 
@@ -75,11 +75,11 @@ hypo_import_snps <- function(file, gz=FALSE, run, ...){
 hypo_import_windows <- function(file, gz=FALSE, run,...){
   if(gz){
     import <- function(...,file){
-      readr::read_delim(file = gzfile(file), delim='\t', ...)
+      vroom::vroom(file = gzfile(file), delim='\t', ...)
     }
   } else {
     import <- function(...,file){
-      readr::read_delim(file = file, delim='\t', ...)
+      vroom::vroom(file = file, delim='\t', ...)
     }
   }
 
@@ -124,7 +124,7 @@ hypo_import_windows <- function(file, gz=FALSE, run,...){
 hypo_import_genotype_freq <- function(file_path, AA = 'ref', delim = ' '){
   stopifnot(AA %in% c('ref','major'))
 
-  df <- readr::read_delim(file_path, delim = delim)
+  df <- vroom::vroom(file_path, delim = delim)
 
   if(AA == 'ref')  {
     df <- df %>% dplyr::mutate(AAc = rowSums(.==0,na.rm = TRUE),

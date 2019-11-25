@@ -1,0 +1,46 @@
+destination: docs
+url: https://k-hench.github.io/hypogen/
+
+authors:
+  Kosmas Hench:
+    href: https://k-hench.github.io/kh/
+
+template:
+  params:
+    bootswatch: yeti
+
+reference:
+  - title: "Basic hamlet popgen functions"
+    desc: >
+      Core idea of the package.
+    contents:
+      - geom_hypo_LG
+      - hypo_which_CHROM
+      - hypo_which_CHROM_s
+      - scale_color_hypo_LG
+      - scale_fill_hypo_LG_bg
+      - scale_x_hypo_LG
+      - theme_hypo
+      - theme_hypo_anno_extra
+  - title: "Import popgen stats"
+    desc: >
+      Functions dealing data import.
+    contents:
+      - hypo_hwe
+      - hypo_import_genotype_freq
+      - hypo_import_snps
+      - hypo_import_windows
+  - title: "Hamlet genome geoms etc"
+    desc: >
+      Providing hamlet genome ggplot context.
+    contents:
+      - geom_hypobg
+      - guide_colorbar_hypobg
+      - scale_hypobg_distiller
+      - scale_hypobg_manual
+  - title: "Zoom on genome annotation"
+    desc: >
+      Accessing the genome annotation.
+    contents:
+      - hypo_annotation_baseplot
+      - hypo_annotation_get
