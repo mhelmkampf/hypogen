@@ -18,6 +18,7 @@ Imports: tidyverse, rtracklayer
 Depends: tidyverse
 RoxygenNote: 6.1.1
 Suggests: knitr,
+    ggforce,
     rmarkdown,
     testthat,
     hypoimg,
