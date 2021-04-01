@@ -6,6 +6,11 @@
 \usage{
 scale_fill_hypo_LG_bg(..., values = c(odd = NA, even = hypo_clr_lg))
 }
+\arguments{
+\item{...}{parameters passed to scale_hypobg_manual()}
+
+\item{values}{named string vector \code{c(odd = ..., even = ...)}, color scheme for alternating linkage group background}
+}
 \description{
 \code{scale_fill_hypo_LG_bg} sets the color scheme for the LG background shading.
 }
@@ -15,6 +20,15 @@ Fill values are set for tnhe two LG classes (even/odd LG nr).
 \strong{! CAREFUL:} LG fill values are set to "zz1" $ zz2.
 If additional fill levels exist, the fill values of the LGs should be appended
 to the desired fill scale.
+}
+\examples{
+ggplot() +
+  geom_hypo_LG() +
+  scale_fill_hypo_LG_bg(values = c(even = "#274263", odd = "#C09C60")) +
+  scale_x_hypo_LG() +
+  coord_cartesian(ylim = c(0, 1)) +
+  theme_hypo()
+
 }
 \seealso{
 \code{\link{geom_hypo_LG}}, \code{\link{scale_x_hypo_LG}}, \code{\link{scale_color_hypo_LG}}

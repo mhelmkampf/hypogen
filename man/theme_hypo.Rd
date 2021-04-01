@@ -6,6 +6,9 @@
 \usage{
 theme_hypo(...)
 }
+\arguments{
+\item{...}{parameters passed to ggplot2::theme()}
+}
 \description{
 \code{theme_hypo} sets the default hypogen plot theme.
 }

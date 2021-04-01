@@ -7,12 +7,11 @@
 hypo_import_genotype_freq(file_path, AA = "ref", delim = " ")
 }
 \arguments{
-\item{AA}{string skalar ('ref' or 'major', optional), should the
-reference or the major allele be encoded as A?}
+\item{file_path}{string scalar (mandatory), the input file}
 
-\item{delim}{string skalar (optional), delimiter of the input file}
+\item{AA}{string scalar ('ref' or 'major', optional), should the reference or the major allele be encoded as A?}
 
-\item{file}{string skalar (mandatory), the input file}
+\item{delim}{string scalar (optional), delimiter of the input file}
 }
 \description{
 \code{hypo_import_genotype_freq} takes a genotype table (such as VCFtools --012 output) and computes genotype frequencies.
@@ -22,13 +21,13 @@ This function takes a genotype table (a transposed VCFtools --012
 output with samples as columns and SNPs as rows) and computes
 genotype frequencies from it. Genotypes are assumed to be encoded as:
 \itemize{
-  \item{0: Homozygous (reference allele)}
-  \item{1: Heterozygous}
-  \item{2: Homozygous (alternative allele)}
+\item{0: Homozygous (reference allele)}
+\item{1: Heterozygous}
+\item{2: Homozygous (alternative allele)}
 }
 
 The genotype frequencies can later be visualized
-using the ggtern package.
+using the {ggtern} package.
 
-This approac assumes biallelic SNPs!
+This approach assumes biallelic SNPs!
 }

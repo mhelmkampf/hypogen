@@ -7,7 +7,7 @@
 hypo_which_CHROM_s(x)
 }
 \arguments{
-\item{x}{interger skalar (mandatory), a bp position on the hamlet genome.}
+\item{x}{integer scalar (mandatory), a bp position on the hamlet genome.}
 }
 \description{
 \code{hypo_which_CHROM_s} determines the LG from the genomic position.
@@ -15,6 +15,10 @@ hypo_which_CHROM_s(x)
 \details{
 The function finds the respective LG on which a specific genomic position (1 - 559,649,677)
 resides.
+}
+\examples{
+hypo_which_CHROM_s(123581321)
+
 }
 \seealso{
 \code{\link{hypo_which_CHROM}}

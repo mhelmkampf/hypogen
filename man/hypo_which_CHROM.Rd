@@ -7,7 +7,7 @@
 hypo_which_CHROM(x)
 }
 \arguments{
-\item{x}{interger vector (mandatory), a vector of bp positions on the hamlet genome.}
+\item{x}{integer vector (mandatory), a vector of bp positions on the hamlet genome.}
 }
 \description{
 \code{hypo_which_CHROM} determines the LG from a vector of genomic position.
@@ -15,6 +15,11 @@ hypo_which_CHROM(x)
 \details{
 The function vectorizes the \code{hypo_which_CHROM_s} function.
 }
+\examples{
+
+hypo_which_CHROM(c(11235813, 123581321))
+
+}
 \seealso{
-\code{\link{hypo_which_CHROM}}
+\code{\link{hypo_which_CHROM_s}}
 }

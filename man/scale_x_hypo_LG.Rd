@@ -4,9 +4,27 @@
 \alias{scale_x_hypo_LG}
 \title{Format genome wide x axis}
 \usage{
-scale_x_hypo_LG(..., name = "", expand = c(0, 0),
+scale_x_hypo_LG(
+  ...,
+  name = "",
+  expand = c(0, 0),
   breaks = (hypo_karyotype$GSTART + hypo_karyotype$GEND)/2,
-  labels = 1:24, position = "top")
+  labels = 1:24,
+  position = "top"
+)
+}
+\arguments{
+\item{...}{parameters passed to ggplot2::scale_x_continuous()}
+
+\item{name}{string/ expression, x axis title}
+
+\item{expand}{numeric vector of length 2}
+
+\item{breaks}{numeric vector, x axis breaks}
+
+\item{labels}{string vector, x axis labels}
+
+\item{position}{string ("top"/ "bottom"), axis placement}
 }
 \description{
 \code{scale_x_hypo_LG} adjusts the x axis to match the hamet genome.
@@ -17,10 +35,12 @@ center of the LG.
 The should be combined with \code{hypogen::geom_hypo_LG}
 }
 \examples{
-
 ggplot() +
   geom_hypo_LG() +
-  scale_x_hypo_LG()
+  scale_fill_hypo_LG_bg() +
+  scale_x_hypo_LG() +
+  coord_cartesian(ylim = c(0, 1)) +
+  theme_hypo()
 
 }
 \seealso{

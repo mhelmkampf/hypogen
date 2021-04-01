@@ -6,6 +6,9 @@
 \usage{
 geom_hypo_LG(...)
 }
+\arguments{
+\item{...}{catch all parameter (legacy)}
+}
 \description{
 \code{geom_hypo_LG} adds the linkage group (LG) boundaries to background of a ggplot.
 }
@@ -14,10 +17,12 @@ To add context to genome wide plots of a statistic (e.g. Fst) this function
 adds a alternating shaded background to the plot.
 }
 \examples{
-
 ggplot() +
-  geom_hypo_LG()+
-  scale_color_hypo_LG()
+  geom_hypo_LG() +
+  scale_fill_hypo_LG_bg() +
+  scale_x_hypo_LG() +
+  coord_cartesian(ylim = c(0, 1)) +
+  theme_hypo()
 
 }
 \seealso{

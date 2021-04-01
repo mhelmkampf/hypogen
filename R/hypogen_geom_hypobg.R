@@ -1,3 +1,15 @@
+#' Add linkage group annotation
+#'
+#' @param mapping     Set of aesthetic mappings created by aes()
+#' @param data        The data to be displayed in this layer - usually hypogen::hypo_karyotype
+#' @param stat        string, "identity"
+#' @param position    Position adjustment "identity"
+#' @param ...         Other arguments passed on to layer().
+#' @param na.rm       If FALSE, the default, missing values are removed with a warning
+#' @param show.legend logical. Should this layer be included in the legends?
+#' @param inherit.aes logical
+#'
+#' @export
 geom_hypobg <- function(mapping = NULL, data = NULL,
                            stat = "identity", position = "identity",
                            ...,
@@ -74,11 +86,31 @@ rect_to_poly <- function(xmin, xmax, ymin, ymax) {
   )
 }
 
+#' Manual linkage group color scale
+#'
+#' @param ...         parameters passed to ggplot2:::manual_scale()
+#' @param values      string vector, color values
+#' @param aesthetics  string, "hypobg"
+#'
+#' @export
 scale_hypobg_manual <- function (..., values, aesthetics = "hypobg")
 {
   manual_scale(aesthetics, values, ...)
 }
 
+#' Scale Linkage Group background
+#'
+#' @param ...        parameters passed to ggplot2::continuous_scale()
+#' @param type       string, RColorBrewer palette type
+#' @param palette    integer, RColorBrewer palette index
+#' @param direction  numeric (1/ -1)
+#' @param values     numeric vector, passed to scales::gradient_n_pal
+#' @param space      colour space in which to calculate gradient, passed to scales::gradient_n_pal
+#' @param na.value    Missing values will be replaced with this value.
+#' @param guide       ggplot2::guide
+#' @param aesthetics  string ("hypobg")
+#'
+#' @export
 scale_hypobg_distiller <- function (..., type = "seq", palette = 1, direction = -1, values = NULL,
                                     space = "Lab", na.value = "grey50", guide = "colourbar",
                                     aesthetics = "hypobg")
@@ -88,10 +120,44 @@ scale_hypobg_distiller <- function (..., type = "seq", palette = 1, direction = 
     warning("Using a discrete colour palette in a continuous scale.\n  Consider using type = \"seq\" or type = \"div\" instead",
             call. = FALSE)
   }
-  continuous_scale(aesthetics, "distiller", scales::gradient_n_pal(scales::brewer_pal(type,palette, direction)(6), values, space), na.value = na.value,
+  continuous_scale(aesthetics, "distiller",
+                   scales::gradient_n_pal(scales::brewer_pal(type, palette, direction)(6), values, space),
+                   na.value = na.value,
                    guide = guide, ...)
 }
 
+#' Clone of guide_colorbar for linkage group background
+#'
+#' @param title           clone, s. ggplot2::guide_colorbar()
+#' @param title.position  clone, s. ggplot2::guide_colorbar()
+#' @param title.theme     clone, s. ggplot2::guide_colorbar()
+#' @param title.hjust     clone, s. ggplot2::guide_colorbar()
+#' @param title.vjust     clone, s. ggplot2::guide_colorbar()
+#' @param label           clone, s. ggplot2::guide_colorbar()
+#' @param label.position  clone, s. ggplot2::guide_colorbar()
+#' @param label.theme     clone, s. ggplot2::guide_colorbar()
+#' @param label.hjust     clone, s. ggplot2::guide_colorbar()
+#' @param label.vjust     clone, s. ggplot2::guide_colorbar()
+#' @param barwidth        clone, s. ggplot2::guide_colorbar()
+#' @param barheight       clone, s. ggplot2::guide_colorbar()
+#' @param nbin            clone, s. ggplot2::guide_colorbar()
+#' @param raster          clone, s. ggplot2::guide_colorbar()
+#' @param frame.colour    clone, s. ggplot2::guide_colorbar()
+#' @param frame.linewidth clone, s. ggplot2::guide_colorbar()
+#' @param frame.linetype  clone, s. ggplot2::guide_colorbar()
+#' @param ticks           clone, s. ggplot2::guide_colorbar()
+#' @param ticks.colour    clone, s. ggplot2::guide_colorbar()
+#' @param ticks.linewidth clone, s. ggplot2::guide_colorbar()
+#' @param draw.ulim       clone, s. ggplot2::guide_colorbar()
+#' @param draw.llim       clone, s. ggplot2::guide_colorbar()
+#' @param direction       clone, s. ggplot2::guide_colorbar()
+#' @param default.unit    clone, s. ggplot2::guide_colorbar()
+#' @param reverse         clone, s. ggplot2::guide_colorbar()
+#' @param order           clone, s. ggplot2::guide_colorbar()
+#' @param available_aes   string, extended ggplot2::guide_colorbar() options by "hypobg"
+#' @param ...             clone, s. ggplot2::guide_colorbar()
+#'
+#' @export
 guide_colorbar_hypobg <- function (title = waiver(), title.position = NULL, title.theme = NULL,
                                    title.hjust = NULL, title.vjust = NULL, label = TRUE, label.position = NULL,
                                    label.theme = NULL, label.hjust = NULL, label.vjust = NULL,

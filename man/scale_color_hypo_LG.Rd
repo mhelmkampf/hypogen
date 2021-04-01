@@ -6,6 +6,11 @@
 \usage{
 scale_color_hypo_LG(..., name = "LG")
 }
+\arguments{
+\item{...}{parameters passed to ggplot2::scale_color_manual()}
+
+\item{name}{string/ expression, color guide title}
+}
 \description{
 \code{scale_color_hypo_LG} adjusts the color scale with default color for each LG.
 }

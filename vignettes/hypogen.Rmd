@@ -1,5 +1,5 @@
 ---
-title: "The hypogen package"
+title: "hypogen intro"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{hypogen intro}
@@ -9,7 +9,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{css, echo=FALSE}
+```{css, echo = FALSE}
 img {
   border: 0;
 }
@@ -22,6 +22,7 @@ knitr::opts_chunk$set(
 )
 
 library("hypogen")
+library("rtracklayer")
 ```
 
 ## About the package:
@@ -33,10 +34,10 @@ More *artistic* aspects of hamlet analysis plots are provided within the [**hypo
 
 ## Installation
 
-Using the **devtools** package, **hypogen** can be installed directly from github:
+Using the **remotes** package, **hypogen** can be installed directly from github:
 
 ```{r install, eval = FALSE}
-devtools::install_github("k-hench/hypogen")
+remotes::install_github("k-hench/hypogen")
 ```
 
 ## Importing Data
@@ -54,21 +55,25 @@ data_windows <- hypo_import_windows(file = file_windows, gz = TRUE) %>%
 
 ## The basic genome wide plot
 
-Ploting a certain statistic over the whole genome is a frequent issue. An example for this is the running average of *F~ST~*.
+Plotting a certain statistic over the whole genome is a frequent issue. An example for this is the running average of *F~ST~*.
 
 Assume we have a dataset containing to variables measure along the genome:
 
 ```{r create_fake_genome_wide_data}
-test_df <- tibble(x=rep(seq(1,max(hypo_karyotype$GEND),length.out = 500),2)) %>%
-  mutate(CHROM = hypo_which_CHROM(x),grp = rep(c('sin','cos'), each = 500),
-         y = ifelse(grp=='sin',sin(x/200000000*2*pi),cos(x/200000000*2*pi+.2))+rnorm(1000))
+test_df <- tibble(x=rep(seq(1, max(hypo_karyotype$GEND), length.out = 500), 2)) %>%
+  mutate(CHROM = hypo_which_CHROM(x),
+         grp = rep(c('sin', 'cos'), each = 500),
+         y = ifelse(grp == 'sin', 
+                    sin(x/200000000*2*pi),
+                    cos(x/200000000*2*pi+.2)) + rnorm(1000))
 test_df %>% head
 ```
 
-```{r plot_genome_wide,fig.width=10,fig.height=6, out.width="100%"}
+```{r plot_genome_wide, fig.width = 10, fig.height = 6, out.width = "100%"}
 ggplot() +
   geom_hypo_LG() +
-  geom_line(data=test_df,aes(x=x,y=y,col=CHROM)) +
+  geom_line(data = test_df,
+            aes(x = x, y = y, col = CHROM)) +
   scale_fill_hypo_LG_bg() +
   scale_x_hypo_LG() +
   scale_color_hypo_LG() +
@@ -79,28 +84,38 @@ ggplot() +
 ## The annotation plot
 
 ```{r create_fake_annotation_data}
-XR <- c(10000,50000)
-test_df_2 <- tibble(x=rep(seq(XR[1],XR[2],length.out = 200),2)) %>%
-  mutate(window = rep(c('bold(hyp_sin)','bold(hyp_cos)'), each = 200),
+XR <- c(10000, 50000)
+test_df_2 <- tibble(x = rep(seq(XR[1], XR[2], length.out = 200), 2)) %>%
+  mutate(window = rep(c('bold(hyp_sin)', 'bold(hyp_cos)'), each = 200),
          y = ifelse(window == 'bold(hyp_sin)',
                     sin(x/XR[2]*20*pi),
                     cos(x/XR[2]*20*pi+.2)) + rnorm(400))
 ```
 
 ```{r plot_annotation,fig.width=10,fig.height=8, out.width="100%"}
+clr <- c("#000004FF", "#BB3754FF", "#FCFFA4FF")
+```
+
+
+```{r ,fig.width=10,fig.height=8, out.width="100%"}
 hypo_annotation_baseplot(searchLG = "LG01", xrange = XR,
                          genes_of_interest = "TSEN34",
-                         genes_of_sec_interest = "Serp1") +
+                         genes_of_sec_interest = "Serp1")
+```
+
+
+```{r ,fig.width=10,fig.height=8, out.width="100%", eval = FALSE}
++
   geom_point(data = data_snps, aes(x = POS, y = WEIR_AND_COCKERHAM_FST),
             color = 'lightgray') +
   geom_line(data = data_windows, aes(x = POS, y = WEIGHTED_FST),
-            color = viridis::inferno(5)[4]) +
+            color = "#F98C0AFF") +
   coord_cartesian(xlim = XR) +
   facet_grid(window~.,scales='free_y',
              switch = 'y',labeller = label_parsed) +
-  scale_color_manual(values = c('black','gray',viridis::inferno(3)),
+  scale_color_manual(values = c('black', 'gray', clr),
                      guide = FALSE) +
-  scale_fill_manual(values = viridis::inferno(3),
+  scale_fill_manual(values = clr,
                     guide = FALSE) +
   scale_x_continuous(name = "Hypo AnnoPlot Title",
                      expand = c(0,0),position = 'top') +
@@ -110,9 +125,7 @@ hypo_annotation_baseplot(searchLG = "LG01", xrange = XR,
 
 ------------------------
 
-<center>
-```{r, echo = FALSE,fig.asp = 1, out.height = "150pt", out.width = "150pt"}
+```{r, echo = FALSE, fig.asp = 1, out.height = "150pt", out.width = "150pt", dev = "svg", fig.align = "center"}
 library(ggforce)
 hypoimg:::hypo_logo()
 ```
-</center>

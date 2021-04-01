@@ -2,13 +2,18 @@
 % Please edit documentation in R/hypogen_annoplot.R
 \name{hypo_annotation_get}
 \alias{hypo_annotation_get}
-\title{Loading the annotation dataframe}
+\title{Loading the annotation data frame}
 \usage{
-hypo_annotation_get(searchLG, xrange, genes_of_interest = c(),
-  genes_of_sec_interest = c(), anno_rown = 3)
+hypo_annotation_get(
+  searchLG,
+  xrange,
+  genes_of_interest = c(),
+  genes_of_sec_interest = c(),
+  anno_rown = 3
+)
 }
 \arguments{
-\item{searchLG}{string skalar (mandatory), should be on of "LG01" - "LG24"}
+\item{searchLG}{string scalar (mandatory), should be on of "LG01" - "LG24"}
 
 \item{xrange}{integer vector (mandatory), data range to be loaded(start bp - end bp).
 Positions are defined with respect to the LG, NOT the overall genomic position.}
@@ -19,20 +24,20 @@ Positions are defined with respect to the LG, NOT the overall genomic position.}
 \item{genes_of_sec_interest}{string vector (optional), tags specific gene names for secondary highlighting
 when plotting. (needs to exactly match the gene name of the original gff file)}
 
-\item{anno_rown}{integer skalar (optional), defines the number of gene rows to avoid overlapping.}
+\item{anno_rown}{integer scalar (optional), defines the number of gene rows to avoid overlapping.}
 }
 \description{
 \code{hypo_annotation_get} loads the genome annotation.
 }
 \details{
-Hypogen comes with the annotation data of the halmet genome.
+Hypogen comes with the annotation data of the hamlet genome.
 To load the data into R \code{hypo_annotation_get} makes use of
 the \strong{rtracklayer} package.
-The function returns a list containg two data frames: the first one
-holds the general mRNA extends, the second ond the detailed Exon boundaries.
+The function returns a list contain two data frames: the first one
+holds the general mRNA extends, the second and the detailed Exon boundaries.
 
 Only the data of a specified range on a specific LG is loaded.
-Genes of interes as well as genes of minor interest can be specified and
+Genes of interest as well as genes of minor interest can be specified and
 the number of lines that the mRNAs can be specified to avoid overlapping
 when plotting the annotations.
 }
