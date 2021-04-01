@@ -126,7 +126,6 @@ hypo_annotation_baseplot(searchLG = "LG01", xrange = XR,
 
 ------------------------
 
-```{r, echo = FALSE, fig.asp = 1, out.height = "150pt", out.width = "150pt", dev = "svglite", fig.align = "center"}
-library(ggforce)
-hypoimg:::hypo_logo()
+```{r, echo = FALSE, fig.asp = 1, out.height = "150pt", out.width = "150pt", fig.align = "center"}
+knitr::include_graphics("logo.svg")
 ```
