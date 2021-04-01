@@ -66,6 +66,7 @@ jobs:
         run: |
           remotes::install_bioc("rtracklayer")
           remotes::install_github("k-hench/hypoimg")
+          remotes::install_github("r-lib/svglite")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}

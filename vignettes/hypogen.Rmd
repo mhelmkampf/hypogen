@@ -21,6 +21,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
+library("svglite")
 library("hypogen")
 library("rtracklayer")
 ```
@@ -125,7 +126,7 @@ hypo_annotation_baseplot(searchLG = "LG01", xrange = XR,
 
 ------------------------
 
-```{r, echo = FALSE, fig.asp = 1, out.height = "150pt", out.width = "150pt", dev = "svg", fig.align = "center"}
+```{r, echo = FALSE, fig.asp = 1, out.height = "150pt", out.width = "150pt", dev = "svglite", fig.align = "center"}
 library(ggforce)
 hypoimg:::hypo_logo()
 ```

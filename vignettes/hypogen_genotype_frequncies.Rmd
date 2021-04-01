@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 )
 
 library("hypogen")
-
+library("svglite")
 ```
 
 
@@ -104,7 +104,7 @@ ggplot() +
 
 ------------------------
 
-```{r, echo = FALSE, fig.asp = 1, out.height = "150pt", out.width = "150pt", dev = "svg", fig.align = "center"}
+```{r, echo = FALSE, fig.asp = 1, out.height = "150pt", out.width = "150pt", dev = "svglite", fig.align = "center"}
 library(ggforce)
 hypoimg:::hypo_logo()
 ```

@@ -27,6 +27,6 @@ remotes::install_bioc("rtracklayer")
 ## Install
 
 To install **hypogen** please run:
-```
+```r
 remotes::install_github("k-hench/hypogen")
 ```
