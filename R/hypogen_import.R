@@ -8,10 +8,10 @@
 #' After import, the CHROM based position is transposed to a genome
 #' wide position for continuous visualization.
 #'
-#' @param file string skalar (mandatory), the input file
-#' @param gz logical skalar (optional), is the input file gz compressed?
-#' @param run string skalar (optional), appends a column RUN as ID if
-#'   several files should be merged later
+#' @param file string scalar (mandatory), the input file
+#' @param gz   logical scalar (optional), is the input file gz compressed?
+#' @param run  string scalar (optional), appends a column RUN as ID if several files should be merged later
+#' @param ...  parameters passed to vroom::vroom()
 #'
 #' @seealso \code{\link{hypo_import_windows}}
 #'
@@ -58,10 +58,10 @@ hypo_import_snps <- function(file, gz=FALSE, run, ...){
 #' is transposed to a genome wide position for continuous
 #' visualization.
 #'
-#' @param file string skalar (mandatory), the input file
-#' @param gz logical skalar (optional), is the input file gz compressed?
-#' @param run string skalar (optional), appends a column RUN as ID if
-#'   several files should be merged later
+#' @param file string scalar (mandatory), the input file
+#' @param gz   logical scalar (optional), is the input file gz compressed?
+#' @param run  string scalar (optional), appends a column RUN as ID if several files should be merged later
+#' @param ...  parameters passed to vroom::vroom()
 #'
 #' @seealso \code{\link{hypo_import_snps}}
 #'
@@ -111,14 +111,13 @@ hypo_import_windows <- function(file, gz=FALSE, run,...){
 #' }
 #'
 #' The genotype frequencies can later be visualized
-#' using the ggtern package.
+#' using the {ggtern} package.
 #'
-#' This approac assumes biallelic SNPs!
+#' This approach assumes biallelic SNPs!
 #'
-#' @param file string skalar (mandatory), the input file
-#' @param AA string skalar ('ref' or 'major', optional), should the
-#'  reference or the major allele be encoded as A?
-#' @param delim string skalar (optional), delimiter of the input file
+#' @param AA        string scalar ('ref' or 'major', optional), should the reference or the major allele be encoded as A?
+#' @param delim     string scalar (optional), delimiter of the input file
+#' @param file_path string scalar (mandatory), the input file
 #'
 #' @export
 hypo_import_genotype_freq <- function(file_path, AA = 'ref', delim = ' '){
@@ -165,15 +164,15 @@ hypo_import_genotype_freq <- function(file_path, AA = 'ref', delim = ' '){
 #'
 #' The function returns the results as table.
 #'
-#' @param n integer skalar (>= 2, mandatory), length of the
-#'    allele freqency range
+#' @param n integer scalar (>= 2, mandatory), length of the
+#'    allele frequency range
 #'
 #' @examples
 #'
 #' genotype_hwe <- hypo_hwe(100)
 #'
 #' @export
-hypo_hwe <- function(n=100L){
+hypo_hwe <- function(n = 100L){
   stopifnot(is.numeric(n) & n %%1 == 0)
   stopifnot(n > 2)
 

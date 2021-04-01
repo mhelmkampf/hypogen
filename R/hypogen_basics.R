@@ -1,5 +1,24 @@
+#' hypogen: Provides Hypoplectrus PopGen Data and Functions
+#'
+#' Basic reference data for population genomic studies in Caribbean
+#' hamlets (Hypoplectrus sp.). It includes summary data of the Hamlet reference
+#' genome (accession number: PRJEB27858, Hench et al. 2018) as well its annotation.
+#' Furthermore it includes some functions to use the reference data  to put new data
+#' into context.
+#'
+#' @docType package
+#' @name hypogen
+#'
+#' @import dplyr
+#' @import ggplot2
+#' @import purrr
+#' @import stringr
+#' @import tibble
+#' @importFrom rlang is_missing
+NULL
+
 .onAttach <- function(libname, pkgname) {
-  cat("--- Welcome to", crayon::blue("hypogen"), "---\n")
+  # cat("--- Welcome to", crayon::blue("hypogen"), "---\n")
 }
 #' Shaded LG backgrounds
 #'
@@ -8,18 +27,22 @@
 #' To add context to genome wide plots of a statistic (e.g. Fst) this function
 #' adds a alternating shaded background to the plot.
 #'
+#' @param ... catch all parameter (legacy)
 #'
 #' @seealso \code{\link{scale_fill_hypo_LG_bg}}
 #'
 #' @examples
-#'
 #' ggplot() +
-#'   geom_hypo_LG()+
-#'   scale_color_hypo_LG()
+#'   geom_hypo_LG() +
+#'   scale_fill_hypo_LG_bg() +
+#'   scale_x_hypo_LG() +
+#'   coord_cartesian(ylim = c(0, 1)) +
+#'   theme_hypo()
 #'
 #' @export
 geom_hypo_LG <- function(...){
-  geom_hypobg(inherit.aes = F,data=hypo_karyotype,
+  geom_hypobg(inherit.aes = FALSE,
+              data = hypogen::hypo_karyotype,
             aes(xmin = GSTART,
                 xmax = GEND,
                 ymin = -Inf,
@@ -35,16 +58,25 @@ geom_hypo_LG <- function(...){
 #' center of the LG.
 #' The should be combined with \code{hypogen::geom_hypo_LG}
 #'
+#' @param ...      parameters passed to ggplot2::scale_x_continuous()
+#' @param name     string/ expression, x axis title
+#' @param expand   numeric vector of length 2
+#' @param breaks   numeric vector, x axis breaks
+#' @param labels   string vector, x axis labels
+#' @param position string ("top"/ "bottom"), axis placement
+#'
 #' @seealso \code{\link{geom_hypo_LG}}, \code{\link{scale_color_hypo_LG}}
 #'
 #' @examples
-#'
 #' ggplot() +
 #'   geom_hypo_LG() +
-#'   scale_x_hypo_LG()
+#'   scale_fill_hypo_LG_bg() +
+#'   scale_x_hypo_LG() +
+#'   coord_cartesian(ylim = c(0, 1)) +
+#'   theme_hypo()
 #'
 #' @export
-scale_x_hypo_LG <- function(..., name = '', expand = c(0,0),
+scale_x_hypo_LG <- function(..., name = '', expand = c(0, 0),
                             breaks = (hypo_karyotype$GSTART + hypo_karyotype$GEND) / 2,
                             labels = 1:24, position = "top"){
   ggplot2::scale_x_continuous(name = name, expand = expand,breaks = breaks,
@@ -59,11 +91,14 @@ scale_x_hypo_LG <- function(..., name = '', expand = c(0,0),
 #'
 #' \strong{! CAREFUL:} should not be used if additional color levels exiest.
 #'
+#' @param ...  parameters passed to ggplot2::scale_color_manual()
+#' @param name string/ expression, color guide title
+#'
 #' @seealso \code{\link{geom_hypo_LG}}, \code{\link{scale_x_hypo_LG}}
 #'
 #' @export
 scale_color_hypo_LG <- function(..., name = 'LG'){
-  ggplot2::scale_color_manual(...,name = name, values = hypo_clr_LGs)
+  ggplot2::scale_color_manual(..., name = name, values = hypo_clr_LGs)
 }
 
 #' Set LG fill
@@ -76,11 +111,22 @@ scale_color_hypo_LG <- function(..., name = 'LG'){
 #' If additional fill levels exist, the fill values of the LGs should be appended
 #' to the desired fill scale.
 #'
+#' @param ...    parameters passed to scale_hypobg_manual()
+#' @param values named string vector `c(odd = ..., even = ...)`, color scheme for alternating linkage group background
+#'
 #' @seealso \code{\link{geom_hypo_LG}}, \code{\link{scale_x_hypo_LG}}, \code{\link{scale_color_hypo_LG}}
+
+#' @examples
+#' ggplot() +
+#'   geom_hypo_LG() +
+#'   scale_fill_hypo_LG_bg(values = c(even = "#274263", odd = "#C09C60")) +
+#'   scale_x_hypo_LG() +
+#'   coord_cartesian(ylim = c(0, 1)) +
+#'   theme_hypo()
 #'
 #' @export
-scale_fill_hypo_LG_bg <- function(...,values = c(odd = NA, even = hypo_clr_lg)){
-  scale_hypobg_manual(...,values = values, guide = F)
+scale_fill_hypo_LG_bg <- function(..., values = c(odd = NA, even = hypo_clr_lg)){
+  scale_hypobg_manual(..., values = values, guide = F)
 }
 
 #' Set hypogen plot theme
@@ -88,6 +134,8 @@ scale_fill_hypo_LG_bg <- function(...,values = c(odd = NA, even = hypo_clr_lg)){
 #' \code{theme_hypo} sets the default hypogen plot theme.
 #'
 #' This theme is optimized for genome wide plots.
+#'
+#' @param ... parameters passed to ggplot2::theme()
 #'
 #' @seealso \code{\link{theme_hypo_anno_extra}}
 #'
@@ -111,6 +159,8 @@ theme_hypo <- function (...) {
 #'
 #' \code{theme_hypo_anno_extra} adjusts the theme for annotation plots.
 #'
+#' @param ... catch all parameter (legacy)
+#'
 #' @seealso \code{\link{theme_hypo}}
 #' @export
 theme_hypo_anno_extra <- function(...){
@@ -130,9 +180,12 @@ theme_hypo_anno_extra <- function(...){
 #' The function finds the respective LG on which a specific genomic position (1 - 559,649,677)
 #' resides.
 #'
-#' @param x interger skalar (mandatory), a bp position on the hamlet genome.
+#' @param x integer scalar (mandatory), a bp position on the hamlet genome.
 #'
 #' @seealso \code{\link{hypo_which_CHROM}}
+#'
+#' @examples
+#' hypo_which_CHROM_s(123581321)
 #'
 #' @export
 hypo_which_CHROM_s <- function(x){
@@ -146,12 +199,15 @@ hypo_which_CHROM_s <- function(x){
 #'
 #' The function vectorizes the \code{hypo_which_CHROM_s} function.
 #'
-#' @param x interger vector (mandatory), a vector of bp positions on the hamlet genome.
+#' @param x integer vector (mandatory), a vector of bp positions on the hamlet genome.
 #'
-#' @seealso \code{\link{hypo_which_CHROM}}
+#' @seealso \code{\link{hypo_which_CHROM_s}}
+#'
+#' @examples
+#'
+#' hypo_which_CHROM(c(11235813, 123581321))
 #'
 #' @export
 hypo_which_CHROM <- function(x){
-  CHROM <- purrr::map(x,hypo_which_CHROM_s)
-  unlist(CHROM)
+  purrr::map_chr(x,hypo_which_CHROM_s)
 }

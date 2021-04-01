@@ -14,6 +14,7 @@ reference:
     desc: >
       Core idea of the package.
     contents:
+      - hypogen
       - geom_hypo_LG
       - hypo_which_CHROM
       - hypo_which_CHROM_s
@@ -22,6 +23,14 @@ reference:
       - scale_x_hypo_LG
       - theme_hypo
       - theme_hypo_anno_extra
+  - title: "Data Sets and Defaults"
+    desc: >
+      Data that comes with the pckage
+    contents:
+      - hypo_chrom_start
+      - hypo_karyotype
+      - hypo_clr_LGs
+      - hypo_clr_lg
   - title: "Import popgen stats"
     desc: >
       Functions dealing data import.

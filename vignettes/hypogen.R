@@ -1,0 +1,81 @@
+## ----setup, include = FALSE---------------------------------------------------
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library("hypogen")
+library("rtracklayer")
+
+## ----install, eval = FALSE----------------------------------------------------
+#  remotes::install_github("k-hench/hypogen")
+
+## ----import_data, warning = FALSE, message = FALSE----------------------------
+# SNP data
+file_snps <- system.file("extdata", "example.weir.fst.gz", package = "hypogen")
+data_snps <- hypo_import_snps(file = file_snps, gz = TRUE) %>%
+  mutate(window = 'bolditalic(F[ST])')
+
+# Window data
+file_windows <- system.file("extdata", "example.windowed.weir.fst.gz", package = "hypogen")
+data_windows <- hypo_import_windows(file = file_windows, gz = TRUE) %>%
+  mutate(window = 'bolditalic(F[ST])')
+
+## ----create_fake_genome_wide_data---------------------------------------------
+test_df <- tibble(x=rep(seq(1, max(hypo_karyotype$GEND), length.out = 500), 2)) %>%
+  mutate(CHROM = hypo_which_CHROM(x),
+         grp = rep(c('sin', 'cos'), each = 500),
+         y = ifelse(grp == 'sin', 
+                    sin(x/200000000*2*pi),
+                    cos(x/200000000*2*pi+.2)) + rnorm(1000))
+test_df %>% head
+
+## ----plot_genome_wide, fig.width = 10, fig.height = 6, out.width = "100%"-----
+ggplot() +
+  geom_hypo_LG() +
+  geom_line(data = test_df,
+            aes(x = x, y = y, col = CHROM)) +
+  scale_fill_hypo_LG_bg() +
+  scale_x_hypo_LG() +
+  scale_color_hypo_LG() +
+  facet_grid(grp~.)+
+  theme_hypo()
+
+## ----create_fake_annotation_data----------------------------------------------
+XR <- c(10000, 50000)
+test_df_2 <- tibble(x = rep(seq(XR[1], XR[2], length.out = 200), 2)) %>%
+  mutate(window = rep(c('bold(hyp_sin)', 'bold(hyp_cos)'), each = 200),
+         y = ifelse(window == 'bold(hyp_sin)',
+                    sin(x/XR[2]*20*pi),
+                    cos(x/XR[2]*20*pi+.2)) + rnorm(400))
+
+## ----plot_annotation,fig.width=10,fig.height=8, out.width="100%"--------------
+clr <- c("#000004FF", "#BB3754FF", "#FCFFA4FF")
+
+## ----fig.width=10,fig.height=8, out.width="100%"------------------------------
+hypo_annotation_baseplot(searchLG = "LG01", xrange = XR,
+                         genes_of_interest = "TSEN34",
+                         genes_of_sec_interest = "Serp1")
+
+## ----fig.width=10,fig.height=8, out.width="100%", eval = FALSE----------------
+#  +
+#    geom_point(data = data_snps, aes(x = POS, y = WEIR_AND_COCKERHAM_FST),
+#              color = 'lightgray') +
+#    geom_line(data = data_windows, aes(x = POS, y = WEIGHTED_FST),
+#              color = "#F98C0AFF") +
+#    coord_cartesian(xlim = XR) +
+#    facet_grid(window~.,scales='free_y',
+#               switch = 'y',labeller = label_parsed) +
+#    scale_color_manual(values = c('black', 'gray', clr),
+#                       guide = FALSE) +
+#    scale_fill_manual(values = clr,
+#                      guide = FALSE) +
+#    scale_x_continuous(name = "Hypo AnnoPlot Title",
+#                       expand = c(0,0),position = 'top') +
+#    theme_hypo() +
+#    theme_hypo_anno_extra()
+
+## ---- echo = FALSE, fig.asp = 1, out.height = "150pt", out.width = "150pt", dev = "svg", fig.align = "center"----
+library(ggforce)
+hypoimg:::hypo_logo()
+

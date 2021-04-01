@@ -2,13 +2,22 @@
 % Please edit documentation in R/hypogen_annoplot.R
 \name{hypo_annotation_baseplot}
 \alias{hypo_annotation_baseplot}
-\title{Plotting the annotation dataframe}
+\title{Plotting the annotation data frame}
 \usage{
-hypo_annotation_baseplot(..., searchLG, xrange, genes_of_interest = c(),
-  genes_of_sec_interest = c(), anno_rown = 3, width = 0.1)
+hypo_annotation_baseplot(
+  ...,
+  searchLG,
+  xrange,
+  genes_of_interest = c(),
+  genes_of_sec_interest = c(),
+  anno_rown = 3,
+  width = 0.1
+)
 }
 \arguments{
-\item{searchLG}{string skalar (mandatory), should be on of "LG01" - "LG24"}
+\item{...}{catch all parameter to allow excessive parameters through purrr::pmap}
+
+\item{searchLG}{string scalar (mandatory), should be on of "LG01" - "LG24"}
 
 \item{xrange}{integer vector (mandatory), data range to be loaded(start bp - end bp).
 Positions are defined with respect to the LG, NOT the overall genomic position.}
@@ -19,16 +28,16 @@ Positions are defined with respect to the LG, NOT the overall genomic position.}
 \item{genes_of_sec_interest}{string vector (optional), tags specific gene names for secondary highlighting
 when plotting. (needs to exactly match the gene name of the original gff file)}
 
-\item{anno_rown}{integer skalar (optional), defines the number of gene rows to avoid overlapping.}
+\item{anno_rown}{integer scalar (optional), defines the number of gene rows to avoid overlapping.}
 
-\item{width}{float skalar (0-1, optional), defines the height of the exon boxes.}
+\item{width}{float scalar (0-1, optional), defines the height of the exon boxes.}
 }
 \description{
-\code{hypo_annotation_baseplot} initalizes the annotation plot.
+\code{hypo_annotation_baseplot} initializes the annotation plot.
 }
 \details{
-This is wrapper that includes loding the annotations, and initalizing the ggplot.
-Individual data tracks should be realized using facetting over the "window" column.
+This is wrapper that includes loading the annotations, and initializing the ggplot.
+Individual data tracks should be realized using faceting over the "window" column.
 }
 \seealso{
 \code{\link{hypo_annotation_get}}, \code{\link{theme_hypo_anno_extra}}

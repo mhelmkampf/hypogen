@@ -1,26 +1,26 @@
-#' Loading the annotation dataframe
+#' Loading the annotation data frame
 #'
 #' \code{hypo_annotation_get} loads the genome annotation.
 #'
-#' Hypogen comes with the annotation data of the halmet genome.
+#' Hypogen comes with the annotation data of the hamlet genome.
 #' To load the data into R \code{hypo_annotation_get} makes use of
 #' the \strong{rtracklayer} package.
-#' The function returns a list containg two data frames: the first one
-#' holds the general mRNA extends, the second ond the detailed Exon boundaries.
+#' The function returns a list contain two data frames: the first one
+#' holds the general mRNA extends, the second and the detailed Exon boundaries.
 #'
 #' Only the data of a specified range on a specific LG is loaded.
-#' Genes of interes as well as genes of minor interest can be specified and
+#' Genes of interest as well as genes of minor interest can be specified and
 #' the number of lines that the mRNAs can be specified to avoid overlapping
 #' when plotting the annotations.
 #'
-#' @param searchLG string skalar (mandatory), should be on of "LG01" - "LG24"
+#' @param searchLG string scalar (mandatory), should be on of "LG01" - "LG24"
 #' @param xrange integer vector (mandatory), data range to be loaded(start bp - end bp).
 #'   Positions are defined with respect to the LG, NOT the overall genomic position.
 #' @param genes_of_interest string vector (optional), tags specific gene names for highlighting when plotting.
 #'   (needs to exactly match the gene name of the original gff file)
 #' @param genes_of_sec_interest string vector (optional), tags specific gene names for secondary highlighting
 #'  when plotting. (needs to exactly match the gene name of the original gff file)
-#' @param anno_rown integer skalar (optional), defines the number of gene rows to avoid overlapping.
+#' @param anno_rown integer scalar (optional), defines the number of gene rows to avoid overlapping.
 #'
 #' @seealso \code{\link{hypo_annotation_baseplot}}
 #'
@@ -56,8 +56,8 @@ hypo_annotation_get <- function(searchLG, xrange, genes_of_interest=c(),
   exons <- data %>%
     dplyr::filter(type=='exon',end>xrange[1],start<xrange[2]) %>%
     merge(.,mRNAs %>% dplyr::select(Parent,yl,clr),by='Parent',all.x=T) %>%
-    dplyr::mutate(ps=ifelse(strand=='-',end,start),
-           pe=ifelse(strand=='-',start,end),
+    dplyr::mutate(ps = ifelse(strand=='-',end,start),
+           pe = ifelse(strand=='-',start,end),
            window='bold(Gene)') %>%
     dplyr::select(Parent, seqid, type, start, end,  strand,
            Name, ID, oId, Parentgene, Parentgenename, yl,
@@ -66,22 +66,23 @@ hypo_annotation_get <- function(searchLG, xrange, genes_of_interest=c(),
 
   return(list(mRNAs,exons))}
 
-#' Plotting the annotation dataframe
+#' Plotting the annotation data frame
 #'
-#' \code{hypo_annotation_baseplot} initalizes the annotation plot.
+#' \code{hypo_annotation_baseplot} initializes the annotation plot.
 #'
-#' This is wrapper that includes loding the annotations, and initalizing the ggplot.
-#' Individual data tracks should be realized using facetting over the "window" column.
+#' This is wrapper that includes loading the annotations, and initializing the ggplot.
+#' Individual data tracks should be realized using faceting over the "window" column.
 #'
-#' @param searchLG string skalar (mandatory), should be on of "LG01" - "LG24"
+#' @param searchLG string scalar (mandatory), should be on of "LG01" - "LG24"
 #' @param xrange integer vector (mandatory), data range to be loaded(start bp - end bp).
 #'   Positions are defined with respect to the LG, NOT the overall genomic position.
 #' @param genes_of_interest string vector (optional), tags specific gene names for highlighting when plotting.
 #'   (needs to exactly match the gene name of the original gff file)
 #' @param genes_of_sec_interest string vector (optional), tags specific gene names for secondary highlighting
 #'  when plotting. (needs to exactly match the gene name of the original gff file)
-#' @param anno_rown integer skalar (optional), defines the number of gene rows to avoid overlapping.
-#' @param width float skalar (0-1, optional), defines the height of the exon boxes.
+#' @param anno_rown integer scalar (optional), defines the number of gene rows to avoid overlapping.
+#' @param width float scalar (0-1, optional), defines the height of the exon boxes.
+#' @param ... catch all parameter to allow excessive parameters through purrr::pmap
 #'
 #' @seealso \code{\link{hypo_annotation_get}}, \code{\link{theme_hypo_anno_extra}}
 #'
@@ -100,14 +101,13 @@ hypo_annotation_baseplot <- function(..., searchLG, xrange, genes_of_interest = 
             aes(xmin = ps, xmax = pe, ymin = yl-(width/2), ymax = yl+(width/2),
                 fill = clr, col = clr, group = Parent),
             lwd = .1)+
-    ggplot2::geom_segment(data = (df_list[[1]] %>% filter(strand %in% c('+', '-'))),
+    ggplot2::geom_segment(data = (df_list[[1]] %>% dplyr::filter(strand %in% c('+', '-'))),
                aes(x = ps, xend = pe, y = yl, yend = yl, group = Parent),
                lwd=.2,arrow = arrow(length = unit(2,"pt"),type = 'closed'),
                color = 'black')+
-    ggplot2::geom_segment(data = (df_list[[1]] %>% filter(!strand %in% c('+', '-'))),
+    ggplot2::geom_segment(data = (df_list[[1]] %>% dplyr::filter(!strand %in% c('+', '-'))),
                aes(x = ps, xend = pe, y = yl, yend = yl, group = Parent),
                lwd = .2, color = 'black')+
     ggplot2::geom_text(data = df_list[[1]],
             aes(x = labelx, label = gsub('000000', '...', label),y = yl-.5))
   }
-

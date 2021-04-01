@@ -7,8 +7,8 @@
 hypo_hwe(n = 100L)
 }
 \arguments{
-\item{n}{integer skalar (>= 2, mandatory), length of the
-allele freqency range}
+\item{n}{integer scalar (>= 2, mandatory), length of the
+allele frequency range}
 }
 \description{
 \code{hypo_hwe} computes Hardy-Weinberg genopye frequencies for p ranging from 0 to 1.
@@ -18,10 +18,10 @@ This function creates a range of allele frequencies ranging from p = 0 to p = 1
 and computes the respective genotype frequencies according to Hardy-Weinberg:
 
 \itemize{
-  \item{\eqn{q = 1 - p}}
-  \item{\eqn{AA = p^2}}
-  \item{\eqn{Aa = 2pq}}
-  \item{\eqn{aa = q^2}}
+\item{\eqn{q = 1 - p}}
+\item{\eqn{AA = p^2}}
+\item{\eqn{Aa = 2pq}}
+\item{\eqn{aa = q^2}}
 }
 
 The function returns the results as table.

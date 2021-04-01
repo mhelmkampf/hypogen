@@ -7,12 +7,13 @@
 hypo_import_windows(file, gz = FALSE, run, ...)
 }
 \arguments{
-\item{file}{string skalar (mandatory), the input file}
+\item{file}{string scalar (mandatory), the input file}
 
-\item{gz}{logical skalar (optional), is the input file gz compressed?}
+\item{gz}{logical scalar (optional), is the input file gz compressed?}
 
-\item{run}{string skalar (optional), appends a column RUN as ID if
-several files should be merged later}
+\item{run}{string scalar (optional), appends a column RUN as ID if several files should be merged later}
+
+\item{...}{parameters passed to vroom::vroom()}
 }
 \description{
 \code{hypo_import_windows} imports window based statistics (such as VCFtools output).

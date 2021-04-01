@@ -6,6 +6,9 @@
 \usage{
 theme_hypo_anno_extra(...)
 }
+\arguments{
+\item{...}{catch all parameter (legacy)}
+}
 \description{
 \code{theme_hypo_anno_extra} adjusts the theme for annotation plots.
 }
