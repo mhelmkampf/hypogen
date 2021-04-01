@@ -35,6 +35,7 @@ jobs:
         run: |
           remotes::install_bioc("rtracklayer")
           remotes::install_github("k-hench/hypoimg")
+          remotes::install_github("r-lib/svglite")
           remotes::install_deps(dependencies = TRUE)
           install.packages("pkgdown", type = "binary")
         shell: Rscript {0}
