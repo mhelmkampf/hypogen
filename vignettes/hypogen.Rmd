@@ -18,7 +18,8 @@ img {
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  dev = "ragg_png"
 )
 
 library("svglite")
@@ -127,5 +128,5 @@ hypo_annotation_baseplot(searchLG = "LG01", xrange = XR,
 ------------------------
 
 ```{r, echo = FALSE, fig.asp = 1, out.height = "150pt", out.width = "150pt", fig.align = "center"}
-knitr::include_graphics("logo.svg")
+grImport2::grid.picture(grImport2::readPicture("logo.c.svg"))
 ```
