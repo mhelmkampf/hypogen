@@ -27,12 +27,6 @@ library("hypogen")
 library("svglite")
 ```
 
-
-## Disclaimer:
-
-This used to work - unfortunately {ggtern} seems to be broken at tihs moment.
-This page will be updated if {ggtern} gets fixed...
-
 ## Preparation:
 
 To be able to plot genotytpe frequencies, we need a genotype table where genotypes
