@@ -18,9 +18,11 @@ img {
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  dev = "ragg_png"
 )
 
+library("ragg")
 library("hypogen")
 library("svglite")
 ```
@@ -71,7 +73,7 @@ END {
 
 To efficiently plot the genotypes frequencies we make use of the **ggtern** package as well as of the **tidyverse** (and of the **hypogen** package):
 
-```{r load_libs, eval = FALSE, message = FALSE, warning = FALSE}
+```{r load_libs, eval = TRUE, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(ggtern)
 ```
@@ -87,11 +89,11 @@ file_genotypes <- system.file("extdata", "genotype_table.012.trans.txt.gz", pack
 genotype_freqs <- hypo_import_genotype_freq(file_genotypes)
 ```
 
-This table can be directly plottet using **gggtern**.
+This table can be directly plotted using **gggtern**.
 As a reference we also make use of the **hypogen** function `hypo_hwe()` to indicate Hardy-Weinberg
 genotype frequencies:
 
-```{r plot, eval = FALSE,fig.width=10,fig.height=6, out.width="100%", message = FALSE, warning = FALSE}
+```{r plot, eval = TRUE, fig.width=10,fig.height=6, out.width="100%", message = FALSE, warning = FALSE}
 ggplot() +
   coord_tern()+
   geom_point(data = genotype_freqs,
@@ -105,5 +107,5 @@ ggplot() +
 ------------------------
 
 ```{r, echo = FALSE, fig.asp = 1, out.height = "150pt", out.width = "150pt", fig.align = "center"}
-knitr::include_graphics("logo.svg")
+grImport2::grid.picture(grImport2::readPicture("logo.c.svg"))
 ```
