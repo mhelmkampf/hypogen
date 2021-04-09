@@ -1,25 +1,39 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # hypogen <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 <!-- badges: start -->
+
 [![R-CMD-check](https://github.com/k-hench/hypogen/workflows/R-CMD-check/badge.svg)](https://github.com/k-hench/hypogen/actions)
+[![](https://img.shields.io/badge/devel%20version-1.0.0.3-blue.svg)](https://github.com/k-hench/hypogen)
 <!-- badges: end -->
 
-The **R** package **hypogen** provides resources for population genetic analysis based on the hamlet reference genome.
+The **R** package **hypogen** provides resources for population genetic
+analysis based on the hamlet reference genome.
 
-The genome was published in our **Inter-chromosomal coupling between vision and pigmentation genes during genomic divergence** in [*Nature Ecology & Evolotion*](https://www.nature.com/natecolevol/) (DOI: 10.1038/s41559-019-0814-5).
+The genome was published in our **Inter-chromosomal coupling between
+vision and pigmentation genes during genomic divergence** in [*Nature
+Ecology & Evolotion*](https://www.nature.com/natecolevol/) (DOI:
+10.1038/s41559-019-0814-5).
 
-The original genome can be downloaded from the [European Nucleotide Archive](https://www.ebi.ac.uk/ena/data/view/GCA_900610375.1) (project accession number PRJEB27858).
+The original genome can be downloaded from the [European Nucleotide
+Archive](https://www.ebi.ac.uk/ena/data/view/GCA_900610375.1) (project
+accession number PRJEB27858).
 
-The annotation is also deposited at [dryad](https://doi.org/10.5061/dryad.pg8q56g).
+The annotation is also deposited at
+[dryad](https://doi.org/10.5061/dryad.pg8q56g).
 
-Please also look at the [documentation](https://k-hench.github.io/hypogen/index.html).
+Please also look at the
+[documentation](https://k-hench.github.io/hypogen/index.html).
 
-## Dependencies 
+## Dependencies
 
-**hypogen** depends on a bioconductor (non-CRAN) R-package.
-To be able to install the package successfully, the following package will also need to be installed:
+**hypogen** depends on a bioconductor (non-CRAN) R-package. To be able
+to install the package successfully, the following package will also
+need to be installed:
 
-```r
+``` r
 install.packages("remotes")
 remotes::install_bioc("rtracklayer")
 ```
@@ -27,6 +41,7 @@ remotes::install_bioc("rtracklayer")
 ## Install
 
 To install **hypogen** please run:
-```r
+
+``` r
 remotes::install_github("k-hench/hypogen")
 ```
