@@ -95,7 +95,7 @@ ggplot() +
              col = hypo_clr_LGs[18]) +
   geom_path(data = hypo_hwe(n = 100),
             aes(x = AA, y = Aa, z = aa ),
-            color ='black',alpha = .6)
+            color ='black', alpha = .6)
 ```
 
 ------------------------
