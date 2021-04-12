@@ -1,9 +1,11 @@
 ## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  dev = "ragg_png"
 )
 
+library("svglite")
 library("hypogen")
 library("rtracklayer")
 
@@ -75,7 +77,6 @@ hypo_annotation_baseplot(searchLG = "LG01", xrange = XR,
 #    theme_hypo() +
 #    theme_hypo_anno_extra()
 
-## ---- echo = FALSE, fig.asp = 1, out.height = "150pt", out.width = "150pt", dev = "svg", fig.align = "center"----
-library(ggforce)
-hypoimg:::hypo_logo()
+## ---- echo = FALSE, fig.asp = 1, out.height = "150pt", out.width = "150pt", fig.align = "center"----
+grImport2::grid.picture(grImport2::readPicture("logo.c.svg"))
 
