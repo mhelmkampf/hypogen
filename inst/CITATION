@@ -1,0 +1,18 @@
+citHeader("The official zenodo citation for {hypogen} is:")
+
+citEntry(entry = "misc",
+         key = "hypogen",
+         title        = "k-hench/hypogen: First hypogen release",
+         author       = personList(as.person("Kosmas Hench")),
+         year         = "2021",
+         url          = "https://zenodo.org/record/4680525",
+         doi          = "10.5281/ZENODO.4680525",
+         publisher    = "Zenodo",
+         copyright    = "Open Access",
+
+         textVersion  =
+           paste("Hench, Kosmas (2021).",
+                 "k-hench/hypogen: First hypogen release.",
+                 "Zenodo.",
+                 "https://doi.org/10.5281/ZENODO.4680525")
+)

@@ -7,6 +7,7 @@
 
 [![R-CMD-check](https://github.com/k-hench/hypogen/workflows/R-CMD-check/badge.svg)](https://github.com/k-hench/hypogen/actions)
 [![](https://img.shields.io/badge/devel%20version-1.0.0.3-blue.svg)](https://github.com/k-hench/hypogen)
+[![DOI](https://zenodo.org/badge/142599994.svg)](https://zenodo.org/badge/latestdoi/142599994)
 <!-- badges: end -->
 
 The **R** package **hypogen** provides resources for population genetic analysis based on the hamlet reference genome.
