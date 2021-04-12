@@ -22,6 +22,7 @@ knitr::opts_chunk$set(
   dev = "ragg_png"
 )
 
+library("ragg")
 library("svglite")
 library("hypogen")
 library("rtracklayer")
